@@ -23546,3 +23546,100 @@ ter.py
 2025-01-22 20:44:27,728, ERROR, Потерянно соеденение с : 0 игрок отключился, threaded_player, 382, server.py
 2025-01-22 20:44:27,728, INFO, ** remove_player **, sub_func, 73, server.py
 2025-01-22 20:44:27,728, DEBUG, игрок закончился с id : 0, remove_player, 290, server.py
+2025-01-29 20:10:08,917, INFO, Сервер запущен, <module>, 60, server.py
+2025-01-29 20:10:08,919, INFO, ** threaded_referee **, sub_func, 73, server.py
+2025-01-29 20:10:21,125, INFO, Новое подключение с адресом : ('127.0.0.1', 55535), тип подключения main, <module>, 414, server.py
+2025-01-29 20:10:21,127, INFO, ** __init__ **, sub_func, 73, server.py
+2025-01-29 20:10:21,128, INFO, ** threaded_player **, sub_func, 73, server.py
+2025-01-29 20:10:21,128, DEBUG, Игрок создан с id : 0, threaded_player, 353, server.py
+2025-01-29 20:10:21,129, INFO, ** set_start **, sub_func, 73, server.py
+2025-01-29 20:10:21,129, INFO, Player 0 is ready!, threaded_player, 357, server.py
+2025-01-29 20:10:21,129, DEBUG, player id: 0 start state: {'current_player_id': 0, 0: (False, 160, 385, 130, 130)}, threaded_player, 372, server.py
+2025-01-29 20:10:34,978, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 307, server.py
+2025-01-29 20:10:34,979, DEBUG, Player 0: start main cycle. alive_players_num: 1, max_players_num: 1, threaded_player, 377, server.py
+2025-01-29 20:10:34,979, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 307, server.py
+2025-01-29 20:10:34,979, ERROR, Потерянно соеденение с : 0 игрок отключился, threaded_player, 382, server.py
+2025-01-29 20:10:34,979, INFO, ** remove_player **, sub_func, 73, server.py
+2025-01-29 20:10:34,979, DEBUG, игрок закончился с id : 0, remove_player, 290, server.py
+2025-01-29 20:10:35,208, INFO, Referee: game started!, threaded_referee, 338, server.py
+2025-01-29 20:45:14,955, INFO, Сервер запущен, <module>, 60, server.py
+2025-01-29 20:45:14,957, INFO, ** threaded_referee **, sub_func, 73, server.py
+2025-01-29 20:45:17,477, INFO, Новое подключение с адресом : ('127.0.0.1', 55891), тип подключения main, <module>, 414, server.py
+2025-01-29 20:45:17,477, INFO, ** __init__ **, sub_func, 73, server.py
+2025-01-29 20:45:17,478, INFO, ** threaded_player **, sub_func, 73, server.py
+2025-01-29 20:45:17,478, DEBUG, Игрок создан с id : 0, threaded_player, 353, server.py
+2025-01-29 20:45:17,478, INFO, ** set_start **, sub_func, 73, server.py
+2025-01-29 20:45:17,478, INFO, Player 0 is ready!, threaded_player, 357, server.py
+2025-01-29 20:45:17,479, DEBUG, player id: 0 start state: {'current_player_id': 0, 0: (False, 160, 385, 130, 130)}, threaded_player, 372, server.py
+2025-01-29 20:45:25,684, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 307, server.py
+2025-01-29 20:45:25,685, DEBUG, Player 0: start main cycle. alive_players_num: 1, max_players_num: 1, threaded_player, 377, server.py
+2025-01-29 20:45:25,685, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 307, server.py
+2025-01-29 20:45:25,685, ERROR, Потерянно соеденение с : 0 игрок отключился, threaded_player, 382, server.py
+2025-01-29 20:45:25,685, INFO, ** remove_player **, sub_func, 73, server.py
+2025-01-29 20:45:25,685, DEBUG, игрок закончился с id : 0, remove_player, 290, server.py
+2025-01-29 20:45:25,726, INFO, Referee: game started!, threaded_referee, 338, server.py
+2025-01-29 20:47:09,429, INFO, Новое подключение с адресом : ('127.0.0.1', 55914), тип подключения main, <module>, 414, server.py
+2025-01-29 20:47:09,429, INFO, ** __init__ **, sub_func, 73, server.py
+2025-01-29 20:47:09,430, INFO, ** threaded_player **, sub_func, 73, server.py
+2025-01-29 20:47:09,430, DEBUG, Игрок создан с id : 0, threaded_player, 353, server.py
+2025-01-29 20:47:09,431, INFO, ** set_start **, sub_func, 73, server.py
+2025-01-29 20:47:09,432, INFO, Player 0 is ready!, threaded_player, 357, server.py
+2025-01-29 20:47:09,432, DEBUG, player id: 0 start state: {'current_player_id': 0, 0: (False, 160, 385, 130, 130)}, threaded_player, 372, server.py
+2025-01-29 20:47:17,021, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 307, server.py
+2025-01-29 20:47:17,022, DEBUG, Player 0: start main cycle. alive_players_num: 1, max_players_num: 2, threaded_player, 377, server.py
+2025-01-29 20:47:17,023, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 307, server.py
+2025-01-29 20:47:17,025, ERROR, Потерянно соеденение с : 0 игрок отключился, threaded_player, 382, server.py
+2025-01-29 20:47:17,026, INFO, ** remove_player **, sub_func, 73, server.py
+2025-01-29 20:47:17,028, DEBUG, игрок закончился с id : 0, remove_player, 290, server.py
+2025-01-29 20:47:42,702, INFO, Новое подключение с адресом : ('127.0.0.1', 55926), тип подключения main, <module>, 414, server.py
+2025-01-29 20:47:42,703, INFO, ** __init__ **, sub_func, 73, server.py
+2025-01-29 20:47:42,705, INFO, ** threaded_player **, sub_func, 73, server.py
+2025-01-29 20:47:42,705, DEBUG, Игрок создан с id : 0, threaded_player, 353, server.py
+2025-01-29 20:47:42,707, INFO, ** set_start **, sub_func, 73, server.py
+2025-01-29 20:47:42,707, INFO, Player 0 is ready!, threaded_player, 357, server.py
+2025-01-29 20:47:42,707, DEBUG, player id: 0 start state: {'current_player_id': 0, 0: (False, 160, 385, 130, 130)}, threaded_player, 372, server.py
+2025-01-29 20:47:47,911, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 307, server.py
+2025-01-29 20:47:47,911, DEBUG, Player 0: start main cycle. alive_players_num: 1, max_players_num: 3, threaded_player, 377, server.py
+2025-01-29 20:47:47,911, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 307, server.py
+2025-01-29 20:47:47,911, ERROR, Потерянно соеденение с : 0 игрок отключился, threaded_player, 382, server.py
+2025-01-29 20:47:47,911, INFO, ** remove_player **, sub_func, 73, server.py
+2025-01-29 20:47:47,913, DEBUG, игрок закончился с id : 0, remove_player, 290, server.py
+2025-01-29 20:51:51,381, INFO, Новое подключение с адресом : ('127.0.0.1', 55972), тип подключения main, <module>, 414, server.py
+2025-01-29 20:51:51,382, INFO, ** __init__ **, sub_func, 73, server.py
+2025-01-29 20:51:51,382, INFO, ** threaded_player **, sub_func, 73, server.py
+2025-01-29 20:51:51,382, DEBUG, Игрок создан с id : 0, threaded_player, 353, server.py
+2025-01-29 20:51:51,382, INFO, ** set_start **, sub_func, 73, server.py
+2025-01-29 20:51:51,383, INFO, Player 0 is ready!, threaded_player, 357, server.py
+2025-01-29 20:51:51,383, DEBUG, player id: 0 start state: {'current_player_id': 0, 0: (False, 160, 385, 130, 130)}, threaded_player, 372, server.py
+2025-01-29 20:51:51,431, DEBUG, Player 0: start main cycle. alive_players_num: 1, max_players_num: 4, threaded_player, 377, server.py
+2025-01-29 20:51:54,762, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 307, server.py
+2025-01-29 20:51:54,762, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 307, server.py
+2025-01-29 20:51:54,763, ERROR, Потерянно соеденение с : 0 игрок отключился, threaded_player, 382, server.py
+2025-01-29 20:51:54,763, INFO, Новое подключение с адресом : ('127.0.0.1', 55973), тип подключения -1, <module>, 414, server.py
+2025-01-29 20:51:54,763, INFO, ** remove_player **, sub_func, 73, server.py
+2025-01-29 20:51:54,763, DEBUG, игрок закончился с id : 0, remove_player, 290, server.py
+2025-01-29 21:05:37,803, ERROR, [WinError 10054] Удаленный хост принудительно разорвал существующее подключение, recieve, 307, server.py
+2025-01-29 21:05:37,803, INFO, Новое подключение с адресом : ('127.0.0.1', 56110), тип подключения -1, <module>, 414, server.py
+2025-01-29 21:06:06,034, ERROR, [WinError 10054] Удаленный хост принудительно разорвал существующее подключение, recieve, 307, server.py
+2025-01-29 21:06:06,036, INFO, Новое подключение с адресом : ('127.0.0.1', 56128), тип подключения -1, <module>, 414, server.py
+2025-01-29 21:19:18,206, INFO, Сервер запущен, <module>, 60, server.py
+2025-01-29 21:19:18,207, INFO, ** threaded_referee **, sub_func, 73, server.py
+2025-01-29 21:19:41,435, ERROR, [WinError 10054] Удаленный хост принудительно разорвал существующее подключение, recieve, 312, server.py
+2025-01-29 21:19:41,436, INFO, Новое подключение с адресом : ('127.0.0.1', 56283), тип подключения -1, <module>, 419, server.py
+2025-01-29 21:23:29,506, INFO, Новое подключение с адресом : ('127.0.0.1', 56341), тип подключения main, <module>, 419, server.py
+2025-01-29 21:23:29,506, INFO, ** __init__ **, sub_func, 73, server.py
+2025-01-29 21:23:29,507, INFO, ** threaded_player **, sub_func, 73, server.py
+2025-01-29 21:23:29,507, DEBUG, Игрок создан с id : 0, threaded_player, 358, server.py
+2025-01-29 21:23:29,507, INFO, ** set_start **, sub_func, 73, server.py
+2025-01-29 21:23:29,507, INFO, Player 0 is ready!, threaded_player, 362, server.py
+2025-01-29 21:23:29,507, DEBUG, player id: 0 start state: {'current_player_id': 0, 0: (False, 160, 385, 130, 130)}, threaded_player, 377, server.py
+2025-01-29 21:23:29,535, INFO, Новое подключение с адресом : ('127.0.0.1', 56342), тип подключения 0, <module>, 419, server.py
+2025-01-29 21:23:29,536, INFO, ** add_extra_socket **, sub_func, 73, server.py
+2025-01-29 21:23:29,536, DEBUG, added extra socket, add_extra_socket, 109, server.py
+2025-01-29 21:23:31,369, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 312, server.py
+2025-01-29 21:23:31,369, DEBUG, Player 0: start main cycle. alive_players_num: 1, max_players_num: 1, threaded_player, 382, server.py
+2025-01-29 21:23:31,369, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 312, server.py
+2025-01-29 21:23:31,369, ERROR, Потерянно соеденение с : 0 игрок отключился, threaded_player, 387, server.py
+2025-01-29 21:23:31,370, INFO, ** remove_player **, sub_func, 73, server.py
+2025-01-29 21:23:31,370, DEBUG, игрок закончился с id : 0, remove_player, 295, server.py
+2025-01-29 21:23:31,598, INFO, Referee: game started!, threaded_referee, 343, server.py

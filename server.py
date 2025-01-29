@@ -102,7 +102,12 @@ class Player:
         self.jumping = False
         self.gravity = gravity
         self.mode = READY
-
+        self.extra_socket = None
+    
+    def add_extra_socket(self, extra_socket):
+        self.extra_socket=extra_socket
+        log.debug(f'added extra socket')
+    
     def set_start(self,):
         self.rect.update(START_POSITIONS[self.id], self.y_pos)
         self.health = 100
@@ -409,16 +414,22 @@ rings = {'2' : ring2,
         }
 
 while True:
-    player_socket, adress = start_socket.accept()
-    log.info(f'Подключился игрок с адресом : {adress}')
-    for id, player_in_slot in players.items():
-        if not player_in_slot:
-            player = Player(id, player_socket, GRAVITY)
-            players[id] = player
-            connected_players_num += 1
-            threading.Thread(target=threaded_player, args=(player,), daemon=True).start()
-            break
+    new_socket, adress = start_socket.accept()
+    socket_type = recieve(new_socket)
+    log.info(f'Новое подключение с адресом : {adress}, тип подключения {socket_type}')
+    if socket_type == 'main':
+        for id, player_in_slot in players.items():
+            if not player_in_slot:
+                player = Player(id, new_socket, GRAVITY)
+                players[id] = player
+                connected_players_num += 1
+                threading.Thread(target=threaded_player, args=(player,), daemon=True).start()
+                break
+        else:
+            print('Максимальное количество игроков')
+            new_socket.close()
+    elif type(socket_type) == int and socket_type >= 0:
+        players[socket_type].add_extra_socket(new_socket)
     else:
-        print('Максимальное количество игроков')
-        player_socket.close()
-        
+        print('Неправильный тип подключения!')
+            

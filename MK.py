@@ -44,7 +44,7 @@ SERVER = 'localhost'
 PORT = 5555
 
 
-@log_class
+#@log_class
 class Menu():
     def __init__(self, screen,
                  menu_background_img_path, 
@@ -110,7 +110,7 @@ class Menu():
                 button.enable(enable)
 
 
-@log_class
+#@log_class
 class Button(epg.Sprite, epg.Label):
     RELEASED = 0
     PRESSED = 1
@@ -162,7 +162,7 @@ def update():
 
 screen = epg.Screen(EARTH_IMAGE_PATH, width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 
-server = connection.Conection(SERVER, PORT)
+server = connection.Connection(SERVER, PORT)
 
 fighters = []
 
@@ -176,6 +176,7 @@ def start_game():
     print(f'start game state:{start_game_state}')
     global current_fighter_id
     current_fighter_id = start_game_state.pop('current_player_id')
+    server.add_extra_socket(current_fighter_id)
     create_fighters(start_game_state, show=False)
     menu.enable_button('играть')
 

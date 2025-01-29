@@ -2,11 +2,19 @@ import socket
 import json
 
 
-class Conection :
+class Connection:
     def __init__(self, server, port):
-        self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server.connect((server, port))
-
+        self.adress = (server, port)
+        self.main_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.main_socket.connect(self.adress)
+        self.send('main')
+        self.extra_socket = None
+    
+    def add_extra_socket(self, id):
+        self.extra_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.extra_socket.connect(self.adress)
+        self.send(id, self.extra_socket)
+    
     def get_start(self):
         return self.recv()
     
@@ -18,7 +26,7 @@ class Conection :
     def recv(self, ):
         data = {}
         try:
-            response = self.server.recv(1024)
+            response = self.main_socket.recv(1024)
        #     print('recv bytes', response)
             str_data = response.decode()
             data = json.loads(str_data) 
@@ -27,12 +35,13 @@ class Conection :
         return data
 
     
-    def send(self, data):
+    def send(self, data, socket=None):
+        socket = socket or self.main_socket
         try:
             str_options = json.dumps(data)
             byte_options = str_options.encode()
-            self.server.send(byte_options)
-#            response = self.server.recv(1024)
+            socket.send(byte_options)
+#            response = self.main_socket.recv(1024)
         except Exception as err:
             print('connection error : ', err)
     
