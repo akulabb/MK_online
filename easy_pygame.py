@@ -103,10 +103,10 @@ def pressed_key(key):
 
 class Screen():
     def __init__(self, background=WHITE,
-                       width=WIDTH,
-                       height=HEIGHT,
-                       caption='EasyPyGame'
-                       ):
+                 width=WIDTH,
+                 height=HEIGHT,
+                 caption='EasyPyGame'
+                ):
         self.width = width
         self.height = height
         self.background = background

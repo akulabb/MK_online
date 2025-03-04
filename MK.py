@@ -214,13 +214,12 @@ def fight():
             if fighter.id == current_fighter_id:
                 options = fighter.check_options()
                 game_state = server.get_game_state(options)
-            fighter.show()
         if game_state == 'finish':
             for fighter in fighters:
                 fighter.hide()
             print('Раунд окончен.')
             return None
-        for fighter in fighters:
+        for fighter in fighters:        #отрисовка нового состояния игры
             fighter_state = game_state.get(str(fighter.id))
             print('FIGHTER STATE', fighter_state)
             if not fighter_state:
@@ -229,7 +228,7 @@ def fight():
                 continue
             fighter.apply_game_state(fighter_state)
         timer = game_state.pop('timer')
-        if not timer == None:
+        if not timer == None:       #обновление таймера
             label_timer.set_value(get_str_time(timer))
         log.info(f'Timer:{timer}')
         if len(game_state) > len(fighters):
@@ -271,11 +270,11 @@ label_timer = epg.Label(text='',
     
 menu = Menu(screen,
             BACK_IMAGE_PATH, 
-            ('играть', 'выйти', 'Ринг на 2', 'Ринг на 3', 'Ринг на 4'),
+            ('Ринг на 2', 'Ринг на 3', 'Ринг на 4', 'выйти'),
             (BUTTON_RELEASED_IMAGE_PATH, BUTTON_PRESSED_IMAGE_PATH, BUTTON_DISABLED_IMAGE_PATH),
-            (100, 100),
+            (90, 90),
             button_order='h',
-            button_margin=80,
+            button_margin=70,
             )
 
 while True:
@@ -289,8 +288,9 @@ while True:
     if choice == 'выйти':
         break
 
-    if choice == 'играть':
-        server.send('Игра началась!')
+    else:
+        ring_num = choice[-1]
+        server.send(ring_num)
         screen.set_background(EARTH_IMAGE_PATH)
         label_timer.show()
         fight()

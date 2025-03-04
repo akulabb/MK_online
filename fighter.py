@@ -153,7 +153,7 @@ class Fighter(epg.Sprite):
         print('HIDE')
     
     def show(self,):
-        super().hide()
+        super().show()
         self.health_bar.show()
         print('SHOW')
 
