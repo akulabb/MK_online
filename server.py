@@ -105,6 +105,7 @@ class Player(threading.Thread):
         self.mode = READY
         self.extra_socket = None
         self.update_timer_value = False
+        self.immortal = True
     
     def add_extra_socket(self, extra_socket):
         self.extra_socket=extra_socket
@@ -141,7 +142,7 @@ class Player(threading.Thread):
         global alive_players_num
         self.hitted_delay = HITTED_DELAY
         if self.mode == IN_GAME:
-            if self.health > 0:
+            if self.health > 0 and not self.immortal:
                 self.health -= 5
                 self.action = HITTED
             if self.health < 1 and self.action != DEAD:
@@ -311,12 +312,16 @@ class Ring(threading.Thread):
             
     def say(self, message):
         log.info(f'Говорит ринг на {self.players_num}: {message}')
-        
+    
+    def enable_players_immortal(self, enable=True):
+        for player in self.players:
+            player.immortal = enable
     
     def run(self,):
         self.say('Referee started!')
         while True:
             self.waiting_for_players()
+            self.enable_players_immortal(False)
             self.say('Game started!')
             self.timer = self.playing_time
             while self.timer > 0:         #TODO разобраться с waiting_players
@@ -328,6 +333,7 @@ class Ring(threading.Thread):
             self.alive_players_num = 0
             self.max_players_num = 0
             self.say('Game over!')
+            self.enable_players_immortal()
             print()
             
     def get_game_state(self, update_timer=False):
