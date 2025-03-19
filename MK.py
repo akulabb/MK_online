@@ -210,15 +210,21 @@ def fight():
     print('файтеры', len(fighters))
     while True:
         game_state = {}
+        print(fighters)
         for fighter in fighters:
             if fighter.id == current_fighter_id:
                 options = fighter.check_options()
                 game_state = server.get_game_state(options)
+        print(f'GAME STATE:{game_state}')
         if game_state == 'finish':
+            print('ОКОНЧАНИЕ РАУНДА...')
+            print(fighters)
             for fighter in fighters:
+                print(f'Hiding fighter {fighter.id}')       #TODO В РИНГЕ НА ТРОИХ ДВА ИГРОКА С ОДИНАКОВЫМ АЙДИ!!!
                 fighter.hide()
             print('Раунд окончен.')
             return None
+        print(fighters)
         for fighter in fighters:        #отрисовка нового состояния игры
             fighter_state = game_state.get(str(fighter.id))
             print('FIGHTER STATE', fighter_state)
@@ -234,19 +240,19 @@ def fight():
         if len(game_state) > len(fighters):
             print('new fighters on server')
             new_fighters = {}
+            print(fighters)
             for fighter_id in game_state.keys():
-                for fighter in fighters:
-                    print('fighter_id:', fighter_id, 'fighter.id:', fighter.id)
-                    if fighter_id != str(fighter.id):
-                        new_fighter_state = game_state.get(fighter_id)
-                        new_fighter_state = (new_fighter_state[4],
-                                             new_fighter_state[0],
-                                             new_fighter_state[1],
-                                             SPRITE_WIDTH,
-                                             SPRITE_HEIGHT,
-                                            )
-                        print('new_fighter_state:', new_fighter_state)
-                        new_fighters[fighter_id] = new_fighter_state
+                if not fighter_id in tuple(str(fighter.id) for fighter in fighters):
+                    print(f'not found id {fighter_id} in local ides')
+                    new_fighter_state = game_state.get(fighter_id)
+                    new_fighter_state = (new_fighter_state[4],
+                                         new_fighter_state[0],
+                                         new_fighter_state[1],
+                                         SPRITE_WIDTH,
+                                         SPRITE_HEIGHT,
+                                        )
+                    print('new_fighter_state:', new_fighter_state)
+                    new_fighters[fighter_id] = new_fighter_state
             create_fighters(new_fighters)
         update()
     print('end')

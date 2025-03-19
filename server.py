@@ -207,25 +207,12 @@ class Player(threading.Thread):
         player_connected = True
         while player_connected:
             self.set_start()
-            #log.info(f'Player {self.id} is ready!')
             start_state = {'current_player_id' : self.id}
-            start_state[id] = (self.dir,
+            start_state[self.id] = (self.dir,
                                self.rect.center_x, 
                                self.rect.center_y, 
                                self.rect.width,
                                self.rect.height,)
-         #   global connected_players_num, alive_players_num, max_players_num, game_started, timer
-          #  while connected_players_num < 2:
-           #     print(connected_players_num, 'кол-во игроков')
-            #    time.sleep(1)
-            # for id, player in players.items():
-                # if player:
-                    # start_state[id] = (player.dir,
-                                       # player.rect.center_x, 
-                                       # player.rect.center_y, 
-                                       # player.rect.width,
-                                       # player.rect.height,
-                                       # )
             send(start_state, self.socket)
             self.waiting_for_second_socket()
             self.say(f'start state: {start_state}')
@@ -233,7 +220,6 @@ class Player(threading.Thread):
             self.say(f'выбрал ринг на {ring_number}')
             ring = rings.get(ring_number)
             ring.add_player(self)
-            ring.start_game()
             self.say(f'start main cycle.')
             while True:                                                    #главный цикл игры
                 options = recieve(self.socket)
@@ -283,27 +269,27 @@ class Rect:
 
 
 class Ring(threading.Thread):
-    def __init__(self, players_num, playing_time=10):
+    def __init__(self, players_num, playing_time=30):
         super().__init__(daemon=True)
         self.playing_time = playing_time
         self.timer = self.playing_time
         self.players_num = players_num
         self.max_players_num = 0
         self.alive_players_num = 0
-        self.game_started = False
+        self.ring_enable = False
+        self.fight = False
         self.players = []
     
     def game_over(self,):
-        pass
+        return not self.ring_enable
     
     def add_player(self, player):
-        self.alive_players_num += 1
-        self.max_players_num += 1
+        self.enable()
         self.players.append(player)
         self.say('It is new player on our ring! His name is {player.name}')
         
-    def start_game(self):
-        self.game_started = True
+    def enable(self, enable=True):
+        self.ring_enable = enable
     
     def waiting_for_players(self,):
         self.say('Waiting for players')
@@ -324,16 +310,21 @@ class Ring(threading.Thread):
             self.enable_players_immortal(False)
             self.say('Game started!')
             self.timer = self.playing_time
-            while self.timer > 0:         #TODO разобраться с waiting_players
+            alive_players = self.players_num
+            while alive_players > 1 and self.timer > 0:
+                alive_players = self.players_num
                 time.sleep(1)
                 self.timer -= 1
                 for player in self.players:
                     player.update_timer_value = True
-            self.game_started = False
-            self.alive_players_num = 0
-            self.max_players_num = 0
+                    if player.action == DEAD:
+                        alive_players -= 1
+            self.enable(False)
             self.say('Game over!')
             self.enable_players_immortal()
+            self.players.clear()
+            self.fight = False
+            print(f'Ring clear')
             print()
             
     def get_game_state(self, update_timer=False):
@@ -346,15 +337,8 @@ class Ring(threading.Thread):
         return game_state
 
 
-def waiting_players():
-    result = True
-    for player in players.values():
-        if player:
-            result = result and bool(player.mode)
-    return result
-
 @to_log
-def remove_player(id):
+def remove_player(id):              #TODO найти на каком ринге игрок и удалить его оттуда(если есть)
     global connected_players_num
     players[id].socket.close()
     players[id] = None

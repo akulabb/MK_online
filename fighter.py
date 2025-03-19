@@ -156,6 +156,9 @@ class Fighter(epg.Sprite):
         super().show()
         self.health_bar.show()
         print('SHOW')
+        
+    def __repr__(self,):
+        return f'Fighter {self.id}'
 
 
 @log_class
