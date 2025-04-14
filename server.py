@@ -202,6 +202,17 @@ class Player(threading.Thread):
         while not self.extra_socket:
             time.sleep(0.25)
     
+    def watch_rings(self,):                                 #TODO игра сразу же заканчивается, проверить Player.mode в Player.run()
+        self.say('watch_rings запускается')
+        prev_rings_state = []
+        while self.mode == READY:
+            rings_state = [ring.fight for ring in rings.values()]
+            if prev_rings_state != rings_state:
+                prev_rings_state = rings_state
+                send(rings_state, self.extra_socket)
+                self.say(f'Rings state: {rings_state}')
+            time.sleep(0.1)
+    
     def run(self):
         self.say('Игрок создан')
         player_connected = True
@@ -216,17 +227,19 @@ class Player(threading.Thread):
             send(start_state, self.socket)
             self.waiting_for_second_socket()
             self.say(f'start state: {start_state}')
+            threading.Thread(target=self.watch_rings, daemon=True).start()
             ring_number = recieve(self.socket)   #ring_number ЭТО СТРОКА  # TODO сделать цикл try except
             self.say(f'выбрал ринг на {ring_number}')
             ring = rings.get(ring_number)
             ring.add_player(self)
             self.say(f'start main cycle.')
+            self.mode = IN_GAME
             while True:                                                    #главный цикл игры
                 options = recieve(self.socket)
-                self.mode = IN_GAME
+                #self.mode = IN_GAME
                 if options == ERROR:
                     log.error(f'Потерянно соеденение с : {self.id} игрок отключился')
-                    alive_players_num -= 1
+               #     alive_players_num -= 1
                     player_connected = False
                     break
                 self.apply_options(options)
@@ -288,6 +301,16 @@ class Ring(threading.Thread):
         self.players.append(player)
         self.say('It is new player on our ring! His name is {player.name}')
         
+    def remove_player(self, id):
+        index = None
+        for player in self.players:
+            if player.id == id:
+                index = self.players.index(player)
+        if index != None:
+            self.players.pop(index)
+            self.say(f'удален игрок {id}')
+            return True
+        
     def enable(self, enable=True):
         self.ring_enable = enable
     
@@ -339,9 +362,11 @@ class Ring(threading.Thread):
 
 @to_log
 def remove_player(id):              #TODO найти на каком ринге игрок и удалить его оттуда(если есть)
-    global connected_players_num
+    global connected_players_num, rings
     players[id].socket.close()
     players[id] = None
+    for ring in rings.values():
+        ring.remove_player(id)
     log.debug(f'игрок закончился с id : {id}')
     connected_players_num -= 1
 
@@ -364,13 +389,6 @@ def recieve(client_socket,):
     finally:
         return data
 
-@to_log
-def choice_waiting(player):
-    send('connected', player.socket)
-    ring_num = recieve(player.socket)
-    log.info(f'player {player.id} chose to {ring_name}')        #TODO обработать ошибку соединения
-    if ring_name in ring.keys():
-        rings(ring_name).add_player(player)
 
 
 

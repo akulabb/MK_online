@@ -220,7 +220,7 @@ def fight():
             print('ОКОНЧАНИЕ РАУНДА...')
             print(fighters)
             for fighter in fighters:
-                print(f'Hiding fighter {fighter.id}')       #TODO В РИНГЕ НА ТРОИХ ДВА ИГРОКА С ОДИНАКОВЫМ АЙДИ!!!
+                print(f'Hiding fighter {fighter.id}')
                 fighter.hide()
             print('Раунд окончен.')
             return None
@@ -237,7 +237,7 @@ def fight():
         if not timer == None:       #обновление таймера
             label_timer.set_value(get_str_time(timer))
         log.info(f'Timer:{timer}')
-        if len(game_state) > len(fighters):
+        if len(game_state) > len(fighters):     #добавление новых игроков
             print('new fighters on server')
             new_fighters = {}
             print(fighters)
@@ -254,6 +254,13 @@ def fight():
                     print('new_fighter_state:', new_fighter_state)
                     new_fighters[fighter_id] = new_fighter_state
             create_fighters(new_fighters)
+        elif len(game_state) < len(fighters):       #удаление вышедших игроков
+            index = None
+            for fighter in fighters:
+                if not fighter.id in game_state.keys():
+                    index = fighters.index(fighter)
+            if index != None:
+                fighters.pop(index)
         update()
     print('end')
     
