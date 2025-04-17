@@ -23,10 +23,12 @@ class Connection:
         game_state = self.recv()
         return game_state
     
-    def recv(self, ):
+    def recv(self, socket=None):
+        if not socket:
+            socket = self.main_socket
         data = {}
         try:
-            response = self.main_socket.recv(1024)
+            response = socket.recv(1024)
        #     print('recv bytes', response)
             str_data = response.decode()
             data = json.loads(str_data) 

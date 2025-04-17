@@ -47,6 +47,7 @@ PORT = 5555
 #@log_class
 class Menu():
     def __init__(self, screen,
+                 server,
                  menu_background_img_path, 
                  button_titles, 
                  button_img_paths, 
@@ -56,26 +57,17 @@ class Menu():
                 ):
         self.background_path = menu_background_img_path
         self.screen = screen
+        self.server = server
+        self.button_img_paths = button_img_paths
         if button_order == 'v':
-            button_x = int(SCREEN_WIDTH / 2)
-            button_y = button_margin + int(button_size[1] / 2)
+            self.button_x = int(SCREEN_WIDTH / 2)
+            self.button_y = self.button_margin + int(button_size[1] / 2)
         else:
-            button_x = button_margin + int(button_size[0] / 2)
-            button_y = int(SCREEN_HEIGHT / 2)
+            self.button_x = self.button_margin + int(button_size[0] / 2)
+            self.button_y = int(SCREEN_HEIGHT / 2)
         self.buttons = []
-        for title in button_titles:
-            button_pos = (button_x, button_y)
-            self.buttons.append(Button(button_img_paths, 
-                                       title,
-                                       button_pos,
-                                       w=button_size[0],
-                                       h=button_size[1],
-                                       ))
-            if button_order == 'v':
-                button_y += button_size[1] + button_margin
-            else:
-                button_x += button_size[0] + button_margin
-                
+        self.add_buttons(button_titles)
+                        
     def get_choice (self, labels=[]):
         choice = ''
         self.screen.set_background(self.background_path)
@@ -89,6 +81,7 @@ class Menu():
         for button in self.buttons:
             button.show()
         menu = True
+        threading.Thread(target=self.update_buttons_state, args=(), daemon=True).start()
         while menu:
             update()
             for button in self.buttons:
@@ -104,6 +97,25 @@ class Menu():
             label.hide()
         return choice
         
+    def update_buttons_state(self,):
+        rings_state = self.server.recv(self.server.extra_socket)
+        for ring_state in rings_state:
+            button_state = not ring_state
+    
+    def add_buttons(self, button_titles):
+        for title in button_titles:
+            button_pos = (self.button_x, self.button_y)
+            self.buttons.append(Button(self.button_img_paths, 
+                                       title,
+                                       button_pos,
+                                       w=button_size[0],
+                                       h=button_size[1],
+                                       ))
+            if self.button_order == 'v':
+                self.button_y += self.button_size[1] + self.button_margin
+            else:
+                self.button_x += self.button_size[0] + self.button_margin
+    
     def enable_button(self, button_name, enable=True):
         for button in self.buttons:
             if button.text == button_name:
@@ -176,6 +188,8 @@ def start_game():
     print(f'start game state:{start_game_state}')
     global current_fighter_id
     current_fighter_id = start_game_state.pop('current_player_id')
+    rings = start_game_state.pop('rings')
+    button_names = [f'Ринг на {ring}' for ring in rings]
     server.add_extra_socket(current_fighter_id)
     create_fighters(start_game_state, show=False)
     menu.enable_button('играть')
@@ -282,8 +296,9 @@ label_timer = epg.Label(text='',
                         )
     
 menu = Menu(screen,
+            server,
             BACK_IMAGE_PATH, 
-            ('Ринг на 2', 'Ринг на 3', 'Ринг на 4', 'выйти'),
+            ('выйти',),
             (BUTTON_RELEASED_IMAGE_PATH, BUTTON_PRESSED_IMAGE_PATH, BUTTON_DISABLED_IMAGE_PATH),
             (90, 90),
             button_order='h',
