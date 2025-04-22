@@ -218,7 +218,9 @@ class Player(threading.Thread):
         player_connected = True
         while player_connected:
             self.set_start()
-            start_state = {'current_player_id' : self.id}
+            start_state = {'current_player_id' : self.id,
+                           'rings' : tuple(rings.keys())
+                          }
             start_state[self.id] = (self.dir,
                                self.rect.center_x, 
                                self.rect.center_y, 

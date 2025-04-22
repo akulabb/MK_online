@@ -58,8 +58,11 @@ class Menu():
         self.background_path = menu_background_img_path
         self.screen = screen
         self.server = server
+        self.button_margin = button_margin
         self.button_img_paths = button_img_paths
-        if button_order == 'v':
+        self.button_size = button_size
+        self.button_order = button_order
+        if self.button_order == 'v':
             self.button_x = int(SCREEN_WIDTH / 2)
             self.button_y = self.button_margin + int(button_size[1] / 2)
         else:
@@ -105,16 +108,20 @@ class Menu():
     def add_buttons(self, button_titles):
         for title in button_titles:
             button_pos = (self.button_x, self.button_y)
-            self.buttons.append(Button(self.button_img_paths, 
+            self.buttons.insert(0, Button(self.button_img_paths, 
                                        title,
                                        button_pos,
-                                       w=button_size[0],
-                                       h=button_size[1],
+                                       w=self.button_size[0],
+                                       h=self.button_size[1],
                                        ))
-            if self.button_order == 'v':
-                self.button_y += self.button_size[1] + self.button_margin
-            else:
-                self.button_x += self.button_size[0] + self.button_margin
+            print(f'Added new button:{title}')
+            for button in self.buttons:
+                new_x_pos = button.place[0] + self.button_size[0] + self.button_margin
+                button.move_to((new_x_pos, self.button_y))
+           # if self.button_order == 'v':
+            #    self.button_y += self.button_size[1] + self.button_margin
+           # else:
+            #    self.button_x += self.button_size[0] + self.button_margin
     
     def enable_button(self, button_name, enable=True):
         for button in self.buttons:
@@ -149,6 +156,10 @@ class Button(epg.Sprite, epg.Label):
      #   else:
       #      self.set_skin(self.RELEASED)
       #      return False
+    
+    def move_to(self, pos):
+        epg.Sprite.move_to(self, pos)
+        epg.Label.place_to(self, pos, center=True)
     
     def hide(self):
         epg.Sprite.hide(self)
@@ -192,7 +203,8 @@ def start_game():
     button_names = [f'Ринг на {ring}' for ring in rings]
     server.add_extra_socket(current_fighter_id)
     create_fighters(start_game_state, show=False)
-    menu.enable_button('играть')
+    menu.add_buttons(button_names)
+    print(f'Buttons:{button_names}')
 
 def get_str_time(int_time):
     seconds = int_time % 60
@@ -306,8 +318,6 @@ menu = Menu(screen,
             )
 
 while True:
-    menu.enable_button('играть', False)
-
     threading.Thread(target=start_game).start()
     
     print(f'start menu')
