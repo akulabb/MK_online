@@ -334,6 +334,7 @@ class Ring(threading.Thread):
             self.waiting_for_players()
             self.enable_players_immortal(False)
             self.say('Game started!')
+            self.fight = True
             self.timer = self.playing_time
             alive_players = self.players_num
             while alive_players > 1 and self.timer > 0:
