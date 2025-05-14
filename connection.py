@@ -6,12 +6,14 @@ class Connection:
     def __init__(self, server, port):
         self.adress = (server, port)
         self.main_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.main_socket.connect(self.adress)
-        self.send('main')
-        self.extra_socket = None
-    
-    def add_extra_socket(self, id):
         self.extra_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    
+    def connect_main_socket(self):
+        self.main_socket.connect(self.adress)
+        print('------------')
+        self.send('main')
+    
+    def connect_extra_socket(self, id):
         self.extra_socket.connect(self.adress)
         self.send(id, self.extra_socket)
     

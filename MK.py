@@ -19,6 +19,7 @@ FPS = 30
 BALL_IMAGE_PATH = 'photos/ball.png'
 EARTH_IMAGE_PATH = 'photos/earth.png'
 BACK_IMAGE_PATH = 'photos/back.png'
+WAITING_BACK_IMAGE_PATH = 'photos/back2.png'
 
 HEIGHT_HALF = int(SCREEN_HEIGHT/2)
 WIDTH_HALF = int(SCREEN_WIDTH/2)
@@ -71,6 +72,8 @@ class Menu():
             self.button_y = int(SCREEN_HEIGHT / 2)
         self.buttons = []
         self.add_buttons(button_titles)
+        for button in self.buttons:
+            button.hide()
                         
     def get_choice (self, labels=[]):
         choice = ''
@@ -160,10 +163,12 @@ class Button(epg.Sprite, epg.Label):
     def hide(self):
         epg.Sprite.hide(self)
         epg.Label.hide(self)
+        print(f'In Button. Hiding: {self}')
     
     def show(self):
         epg.Sprite.show(self)
         epg.Label.show(self)
+        print(f'In Button. Showing: {self}')
         
     def enable(self, enable=True):
         if enable:
@@ -179,28 +184,43 @@ def update():
     epg.tick(FPS)
     
 
-screen = epg.Screen(EARTH_IMAGE_PATH, width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
+screen = epg.Screen(WAITING_BACK_IMAGE_PATH, width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 
 server = connection.Connection(SERVER, PORT)
 
 fighters = []
 
 current_fighter_id = 0
+rings = {}
+current_fighter_config = ()
 
 ground_level = SCREEN_HEIGHT - 254
 
 @to_log
-def start_game():
+def initialize():
+    global current_fighter_id, rings, current_fighter_config, server
+    disconnect = True
+    while disconnect:
+        try:
+            server.connect_main_socket()
+            disconnect = False
+        except ConnectionRefusedError:
+            log.error('connection failed')
+            time.sleep(1)
+        update()
     start_game_state = server.get_start()
     print(f'start game state:{start_game_state}')
-    global current_fighter_id
-    current_fighter_id = start_game_state.pop('current_player_id')
-    rings = start_game_state.pop('rings')
+    current_fighter_id, current_fighter_config, rings = start_game_state
+   # server.add_extra_socket(current_fighter_id)
+    server.connect_extra_socket(current_fighter_id)
     button_names = [f'Ринг на {ring}' for ring in rings]
     button_names.reverse()
-    server.add_extra_socket(current_fighter_id)
-    create_fighters(start_game_state, show=False)
     menu.add_buttons(button_names)
+    create_fighters({current_fighter_id: current_fighter_config}, show=False)
+    
+@to_log
+def start_game():
+    pass
 
 def get_str_time(int_time):
     seconds = int_time % 60
@@ -313,8 +333,20 @@ menu = Menu(screen,
             button_margin=70,
             )
 
+waiting_menu = Menu(screen,
+                    server,
+                    WAITING_BACK_IMAGE_PATH, 
+                    ('выйти',),
+                    (BUTTON_RELEASED_IMAGE_PATH, BUTTON_PRESSED_IMAGE_PATH, BUTTON_DISABLED_IMAGE_PATH),
+                    (90, 90),
+                    button_order='h',
+                    button_margin=70,
+                   )
+
+initialize()
+
 while True:
-    threading.Thread(target=start_game).start()
+    #threading.Thread(target=start_game).start()
     
     print(f'start menu')
     choice = menu.get_choice()
@@ -334,4 +366,5 @@ while True:
         update()
         time.sleep(5)
         label_game_over.hide()
+#TODO закрыть сокеты перед завершением программы
 exit()

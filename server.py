@@ -216,19 +216,21 @@ class Player(threading.Thread):
     def run(self):
         self.say('Игрок создан')
         player_connected = True
+        self.set_start()
+        start_config = (self.dir,
+                        self.rect.center_x, 
+                        self.rect.center_y, 
+                        self.rect.width,
+                        self.rect.height
+                       )
+        start_state = (self.id,
+                       start_config,
+                       tuple(rings.keys())
+                       )                 
+        send(start_state, self.socket)
+        self.waiting_for_second_socket()
+        self.say(f'start state: {start_state}')
         while player_connected:
-            self.set_start()
-            start_state = {'current_player_id' : self.id,
-                           'rings' : tuple(rings.keys())
-                          }
-            start_state[self.id] = (self.dir,
-                               self.rect.center_x, 
-                               self.rect.center_y, 
-                               self.rect.width,
-                               self.rect.height,)
-            send(start_state, self.socket)
-            self.waiting_for_second_socket()
-            self.say(f'start state: {start_state}')
             threading.Thread(target=self.watch_rings, daemon=True).start()
             ring_number = recieve(self.socket)   #ring_number ЭТО СТРОКА  # TODO сделать цикл try except
             self.say(f'выбрал ринг на {ring_number}')
@@ -251,7 +253,11 @@ class Player(threading.Thread):
                 if ring.game_over():
                     self.say('GAME OVER')
                     self.socket.recv(1024)
+                    self.say('sending finish')
                     send('finish', self.socket)
+                    self.say('recieving finish confirnation')
+                    confirm = self.socket.recv(1024)
+                    self.say(f'confirm: {confirm}')
                     break
         remove_player(self.id)
 
