@@ -249,6 +249,8 @@ def create_fighters(game_state, show=True):
  #   return fighters
 @to_log
 def fight():
+    screen.set_background(EARTH_IMAGE_PATH)
+    label_timer.show()
     print('файтеры', len(fighters))
     while True:
         game_state = {}
@@ -304,6 +306,7 @@ def fight():
             if index != None:
                 fighters.pop(index)
         update()
+    label_timer.hide()
     print('end')
     
 label_game_over = epg.Label(text='GAME OVER',
@@ -343,9 +346,9 @@ waiting_menu = Menu(screen,
                     button_margin=70,
                    )
 
-initialize()
+initialize()     #TODO перезапуск инициализации при потере подключения
 
-while True:
+while True: # server.connected: TODO крутить цикл пока клиент подключен
     #threading.Thread(target=start_game).start()
     
     print(f'start menu')
@@ -357,11 +360,8 @@ while True:
     else:
         ring_num = choice[-1]
         server.send(ring_num)
-        screen.set_background(EARTH_IMAGE_PATH)
-        label_timer.show()
-        fight()
-        label_timer.hide()
-        fighters = []
+        fight()                 #TODO fight() должен возвращать результат игры
+        fighters = []           #TODO не удалять текущего файтера
         label_game_over.show()
         update()
         time.sleep(5)
