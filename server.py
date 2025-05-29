@@ -300,24 +300,38 @@ class Ring(threading.Thread):
         self.ring_enable = False
         self.fight = False
         self.players = []
+        self.winners = []
     
     def game_over(self,):
-        return not self.ring_enable
+        if not self.ring_enable:
+            return self.winners
     
     def add_player(self, player):
         self.enable()
         self.players.append(player)
         self.say('It is new player on our ring! His name is {player.name}')
         
-    def remove_player(self, id):
+    def _remove_player_from(self, id, container):
         index = None
-        for player in self.players:
+        for player in container:
             if player.id == id:
-                index = self.players.index(player)
+                index = container.index(player)
         if index != None:
-            self.players.pop(index)
-            self.say(f'удален игрок {id}')
+            container.pop(index)
+        return index
+            
+    def remove_player(self, id):
+        remove = False
+        if _remove_player_from(id, self.players):
+            remove = True
+            self.say(f'удален игрок {id} из players')
+        if _remove_player_from(id, self.winners):
+            remove = True
+            self.say(f'удален игрок {id} из winners') #ДЗ возвращать тру если сработало хотя бы одно из условий, иначе фолс
+        if remove:
             return True
+        else:
+            return False
         
     def enable(self, enable=True):
         self.ring_enable = enable
@@ -334,6 +348,12 @@ class Ring(threading.Thread):
         for player in self.players:
             player.immortal = enable
     
+    def get_winners(self):
+        self.winners = []
+        for player in self.players:
+            if not player.action == DEAD:    
+                self.winners.append(player)
+    
     def run(self,):
         self.say('Referee started!')
         while True:
@@ -342,7 +362,7 @@ class Ring(threading.Thread):
             self.say('Game started!')
             self.fight = True
             self.timer = self.playing_time
-            alive_players = self.players_num
+            alive_players = self.players_num 
             while alive_players > 1 and self.timer > 0:
                 alive_players = self.players_num
                 time.sleep(1)
@@ -351,6 +371,11 @@ class Ring(threading.Thread):
                     player.update_timer_value = True
                     if player.action == DEAD:
                         alive_players -= 1
+            self.winners = get_winners()
+            if alive_players <= 1:
+                pass
+            else:
+                pass            # TODO определить победителя если сработал таймер
             self.enable(False)
             self.say('Game over!')
             self.enable_players_immortal()
