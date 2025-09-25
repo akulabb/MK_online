@@ -82,7 +82,7 @@ class Menu():
             label_y = SCREEN_HEIGHT / (len(labels) + 1)
             label_height = label_y
             for label in labels:
-                label.place_to((CENTER_X, label_y), center=True)
+                label.place_to((WIDTH_HALF, label_y), center=True)
                 label.show()
                 label_y += label_height
         for button in self.buttons:
@@ -190,6 +190,7 @@ server = connection.Connection(SERVER, PORT)
 
 fighters = []
 
+current_fighter = None
 current_fighter_id = 0
 rings = {}
 current_fighter_config = ()
@@ -216,7 +217,7 @@ def initialize():
     button_names = [f'Ринг на {ring}' for ring in rings]
     button_names.reverse()
     menu.add_buttons(button_names)
-    create_fighters({current_fighter_id: current_fighter_config}, show=False)
+    create_fighters({current_fighter_id: current_fighter_config}, show=False, current=True)
     
 @to_log
 def start_game():
@@ -229,24 +230,28 @@ def get_str_time(int_time):
     return str_time
 
 @to_log
-def create_fighters(game_state, show=True):
-    global fighters
+def create_fighters(game_state, show=True, current=False):
+    global fighters, current_fighter
 #    fighters = []
-    for id, player_pos in game_state.items():
+    for id, fighter_config in game_state.items():
         print(f'fighter {id} created')
-        dir, x_pos, y_pos, wigth, height = player_pos
-        fighters.append(Fighter(animation_pathes=FIGHTER_IMAGE_PATHES,
-                        x_pos=x_pos,
-                        y_pos=y_pos,
-                        flip=dir,
-                        wigth=wigth, 
-                        height=height,
-                        ground_level=ground_level,
-                        gravity=GRAVITY,
-                        id=int(id),
-                        show=show,
-                        ))
+        dir, x_pos, y_pos, wigth, height = fighter_config
+        fighter = Fighter(animation_pathes=FIGHTER_IMAGE_PATHES,
+                         x_pos=x_pos,
+                         y_pos=y_pos,
+                         flip=dir,
+                         wigth=wigth, 
+                         height=height,
+                         ground_level=ground_level,
+                         gravity=GRAVITY,
+                         id=int(id),
+                         show=show,
+                        )
+        if current:
+            current_fighter = fighter
+        fighters.append(fighter)
  #   return fighters
+ 
 @to_log
 def fight():
     screen.set_background(EARTH_IMAGE_PATH)
@@ -255,19 +260,19 @@ def fight():
     while True:
         game_state = {}
         print(fighters)
-        for fighter in fighters:
-            if fighter.id == current_fighter_id:
-                options = fighter.check_options()
-                game_state = server.get_game_state(options)
+        options = current_fighter.check_options()
+        game_state = server.get_game_state(options)
         print(f'GAME STATE:{game_state}')
-        if game_state == 'finish':
+        if type(game_state) == list:    #конец игры
             print('ОКОНЧАНИЕ РАУНДА...')
+            print(f'winners: {game_state}')
             print(fighters)
+            server.send('end')
             for fighter in fighters:
                 print(f'Hiding fighter {fighter.id}')
                 fighter.hide()
             print('Раунд окончен.')
-            return None
+            return game_state
         print(fighters)
         for fighter in fighters:        #отрисовка нового состояния игры
             fighter_state = game_state.get(str(fighter.id))
@@ -360,8 +365,8 @@ while True: # server.connected: TODO крутить цикл пока клиен
     else:
         ring_num = choice[-1]
         server.send(ring_num)
-        fight()                 #TODO fight() должен возвращать результат игры
-        fighters = []           #TODO не удалять текущего файтера
+        winners = fight()
+        fighters = []
         label_game_over.show()
         update()
         time.sleep(5)

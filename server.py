@@ -82,6 +82,19 @@ def log_class(class_to_log, ):
             setattr(class_to_log, name, to_log(method))
     return class_to_log
 
+@log_class
+class Character():
+    def __init__(self, id : int, name : str,):
+        self.id = id
+        self.name = name
+        self.max_health = 100
+        self.speed = 10
+        self.damage = 5
+        self.size = PLAYER_SIZE
+        self.weapon_size = PLAYER_SIZE
+        self.ATTACK_DELAY = 5
+        self.HITTED_DELAY = 5
+        
 
 @log_class
 class Player(threading.Thread):
@@ -93,20 +106,18 @@ class Player(threading.Thread):
         self.id = id
         self.dir = bool(self.id % 2) or False            # True влево, False вправо
         self.health = 100
-        self.y_pos = int(GROUND_LEVEL - PLAYER_SIZE[1] / 2)
-        self.rect = Rect(PLAYER_SIZE, 
-                         START_POSITIONS[self.id], 
-                         self.y_pos
-                        )
         self.socket = socket
         self.fall_speed = 0
         self.jumping = False
         self.gravity = gravity
         self.mode = READY
-        self.extra_socket = None
         self.update_timer_value = False
         self.immortal = True
-    
+        self.extra_socket = None
+        self.character = None
+        self.rect = None
+        self.y_pos = None
+   
     def add_extra_socket(self, extra_socket):
         self.extra_socket=extra_socket
         log.debug(f'added extra socket')
@@ -116,34 +127,42 @@ class Player(threading.Thread):
     
     def set_start(self,):
         self.rect.update(START_POSITIONS[self.id], self.y_pos)
-        self.health = 100
+        self.health = self.character.max_health
         self.action = STAY
         self.mode = READY
     
+    def set_character(self, character: Character):
+        self.character = character
+        self.y_pos = int(GROUND_LEVEL - character.size[1] / 2)
+        self.rect = Rect(character.size, 
+                         START_POSITIONS[self.id], 
+                         self.y_pos
+                        )
+    
     def attack(self,):
         self.attack_delay = ATTACK_DELAY
-        attack_dist = self.rect.width
+        attack_dist = self.character.weapon_size[0]
         if self.dir:
             hit_x = self.rect.center_x - attack_dist / 2
         else:
             hit_x = self.rect.center_x + attack_dist / 2
         
-        hit = Rect(PLAYER_SIZE,
-                     hit_x,
-                     self.y_pos,
-                     )
+        hit = Rect(self.character.weapon_size,
+                   hit_x,
+                   self.y_pos,
+                   )
         
    #     print('starting apply hitted')
         for hitted_enemy in hit.get_hitted(self.id): 
-            hitted_enemy.hitted()
+            hitted_enemy.hitted(self.character.damage)
          #   print('attack:enemy id', hitted_enemy.id)
     
-    def hitted(self):
+    def hitted(self, damage):
         global alive_players_num
         self.hitted_delay = HITTED_DELAY
         if self.mode == IN_GAME:
             if self.health > 0 and not self.immortal:
-                self.health -= 5
+                self.health -= damage
                 self.action = HITTED
             if self.health < 1 and self.action != DEAD:
                 self.action = DEAD
@@ -185,7 +204,7 @@ class Player(threading.Thread):
              #       print('call attack')
                     self.action = ATTACK
                     self.attack()
-                dx += options.get('move')
+                dx += self.character.speed * options.get('move')
                 self.dir = options.get('direction')
 
         pos_x = self.rect.center_x + dx
@@ -216,6 +235,7 @@ class Player(threading.Thread):
     def run(self):
         self.say('Игрок создан')
         player_connected = True
+        self.set_character(Character(1, "test"))
         self.set_start()
         start_config = (self.dir,
                         self.rect.center_x, 
@@ -225,16 +245,22 @@ class Player(threading.Thread):
                        )
         start_state = (self.id,
                        start_config,
-                       tuple(rings.keys())
+                       tuple(rings.keys())      #Это названия доступных на сервере рингов
                        )                 
         send(start_state, self.socket)
         self.waiting_for_second_socket()
         self.say(f'start state: {start_state}')
         while player_connected:
+            self.set_start()
             threading.Thread(target=self.watch_rings, daemon=True).start()
-            ring_number = recieve(self.socket)   #ring_number ЭТО СТРОКА  # TODO сделать цикл try except
+            try:
+                ring_number = recieve(self.socket)   #ring_number ЭТО СТРОКА
+                ring = rings[ring_number]
+            except Exception:
+                self.say(f'Неправильный номер ринга: {ring_number}, клиент будет отключен')
+                player_connected = False
+                continue
             self.say(f'выбрал ринг на {ring_number}')
-            ring = rings.get(ring_number)
             ring.add_player(self)
             self.say(f'start main cycle.')
             self.mode = IN_GAME
@@ -250,14 +276,16 @@ class Player(threading.Thread):
                 send(ring.get_game_state(self.update_timer_value), self.socket)
                 if self.update_timer_value:
                     self.update_timer_value = False
-                if ring.game_over():
+                winners = ring.game_over()
+                if winners:
                     self.say('GAME OVER')
-                    self.socket.recv(1024)
+                    recieve(self.socket)
                     self.say('sending finish')
-                    send('finish', self.socket)
-                    self.say('recieving finish confirnation')
-                    confirm = self.socket.recv(1024)
+                    send(winners, self.socket)
+                    self.say('recieving finish confirmation')
+                    confirm = recieve(self.socket)
                     self.say(f'confirm: {confirm}')
+                    ring.remove_player(self.id, clean_winners=False)
                     break
         remove_player(self.id)
 
@@ -288,7 +316,6 @@ class Rect:
                     enemies.append(player)
         return enemies
 
-
 class Ring(threading.Thread):
     def __init__(self, players_num, playing_time=30):
         super().__init__(daemon=True)
@@ -301,10 +328,11 @@ class Ring(threading.Thread):
         self.fight = False
         self.players = []
         self.winners = []
+        self.winners_ids = []
     
     def game_over(self,):
         if not self.ring_enable:
-            return self.winners
+            return self.winners_ids
     
     def add_player(self, player):
         self.enable()
@@ -320,18 +348,18 @@ class Ring(threading.Thread):
             container.pop(index)
         return index
             
-    def remove_player(self, id):
+    def remove_player(self, id, clean_winners=True):
         remove = False
-        if _remove_player_from(id, self.players):
+        if self._remove_player_from(id, self.players):
             remove = True
             self.say(f'удален игрок {id} из players')
-        if _remove_player_from(id, self.winners):
-            remove = True
-            self.say(f'удален игрок {id} из winners') #ДЗ возвращать тру если сработало хотя бы одно из условий, иначе фолс
-        if remove:
-            return True
-        else:
-            return False
+        if clean_winners:
+            if self._remove_player_from(id, self.winners):
+                remove = True
+                self.say(f'удален игрок {id} из winners')
+                self._remove_player_from(id, self.winners_ids)
+                self.say(f'удален игрок {id} из winners_ids')
+        return remove 
         
     def enable(self, enable=True):
         self.ring_enable = enable
@@ -353,6 +381,7 @@ class Ring(threading.Thread):
         for player in self.players:
             if not player.action == DEAD:    
                 self.winners.append(player)
+        return self.winners
     
     def run(self,):
         self.say('Referee started!')
@@ -371,15 +400,25 @@ class Ring(threading.Thread):
                     player.update_timer_value = True
                     if player.action == DEAD:
                         alive_players -= 1
-            self.winners = get_winners()
-            if alive_players <= 1:
-                pass
-            else:
-                pass            # TODO определить победителя если сработал таймер
+            self.winners = self.get_winners()
+            if alive_players > 1:       #время на таймере истекло
+                new_winners = []
+                max_health = self.winners[0].health
+                for winner in self.winners:
+                    if winner.health > max_health:
+                        new_winners = [winner,]
+                    elif winner.health == max_health:
+                        new_winners.append(winner)
+                self.winners = new_winners
+                   # health = winner.health
+            self.winners_ids = [winner.id for winner in self.winners]
             self.enable(False)
-            self.say('Game over!')
             self.enable_players_immortal()
-            self.players.clear()
+            while self.players:
+                self.say(f'Ожидание покидания игроками ринга. На ринге остались: {self.players}')
+                time.sleep(1)
+            self.say('Game over!')
+          #  self.players.clear()
             self.fight = False
             print(f'Ring clear')
             print()

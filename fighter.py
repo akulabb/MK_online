@@ -70,7 +70,6 @@ class Fighter(epg.Sprite):
         health_bar_width = epg.WIDTH / 4 - 20
         health_bar_x = int(HEALTHBAR_POSITIONS[id] - health_bar_width / 2)
         self.health_bar = HealthBar(id=self.id, health=100, pos=(health_bar_x, 10), width=health_bar_width, show=show)
-        self.speed = 10
         self.skin_index = 0
         self.animation_list = []
         for img_path in animation_pathes:
@@ -96,10 +95,10 @@ class Fighter(epg.Sprite):
                     
         if keystate[pygame.K_a]:
             options['direction'] = LEFT
-            options['move'] = -self.speed
+            options['move'] = -1
         if keystate[pygame.K_d]:
             options['direction'] = RIGHT
-            options['move'] = self.speed
+            options['move'] = 1
         if keystate[pygame.K_SPACE]:
             options['jump'] = True
         if keystate[pygame.K_e]:
