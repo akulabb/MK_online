@@ -4,6 +4,8 @@ import pygame
 import inspect
 import logging as mainlog
 
+
+
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 800
 RIGHT = False
@@ -72,8 +74,7 @@ class Fighter(epg.Sprite):
         self.health_bar = HealthBar(id=self.id, health=100, pos=(health_bar_x, 10), width=health_bar_width, show=show)
         self.skin_index = 0
         self.animation_list = []
-        for img_path in animation_pathes:
-            self.animation_list.append(self.load_img(img=img_path, colorkey=(43, 205, 27)))
+        self.change_animation_list(animation_pathes)
         self.stay()
         self.actions = (self.stay,
                         self.go,
@@ -145,6 +146,11 @@ class Fighter(epg.Sprite):
             self.skins_dir = self.direction
         self.image = self.orig_image = self.animation_list[skin_index]
         self.skin_index = skin_index
+    
+    def change_animation_list(self, new_animation_list):
+        self.animation_list = []
+        for path in new_animation_list:
+            self.animation_list.append(self.load_img(img=path, colorkey=(43, 205, 27)))
         
     def hide(self,):
         super().hide()

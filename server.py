@@ -1,3 +1,5 @@
+#WING
+
 import logging as mainlog
 import socket
 import threading
@@ -235,7 +237,10 @@ class Player(threading.Thread):
     def run(self):
         self.say('Игрок создан')
         player_connected = True
-        self.set_character(Character(1, "test"))
+        send(tuple(characters.keys()), self.socket)
+        character_choice = recieve(self.socket)
+        self.say(character_choice)
+        self.set_character(characters[character_choice])
         self.set_start()
         start_config = (self.dir,
                         self.rect.center_x, 
@@ -245,7 +250,7 @@ class Player(threading.Thread):
                        )
         start_state = (self.id,
                        start_config,
-                       tuple(rings.keys())      #Это названия доступных на сервере рингов
+                       tuple(rings.keys()),         #Это названия доступных на сервере рингов
                        )                 
         send(start_state, self.socket)
         self.waiting_for_second_socket()
@@ -463,7 +468,8 @@ def recieve(client_socket,):
         return data
 
 
-
+grer = Character(1, 'grer')
+artom = Character(2, 'artom')
 
 ring2 = Ring(2)
 ring3 = Ring(3)
@@ -478,6 +484,11 @@ rings = {'2' : ring2,
          '3' : ring3,
          '4' : ring4,
         }
+
+characters = {
+    '1' : grer,
+    '2' : artom,
+}
 
 while True:
     new_socket, adress = start_socket.accept()

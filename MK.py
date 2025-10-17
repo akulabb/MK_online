@@ -29,12 +29,20 @@ GRAVITY = 2
 #EARTH = 716
 
 PROJECT_DIR = os.getcwd()
-FIGHTER_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos\\stay.png'),
+GRER_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos\\stay.png'),
                         os.path.join(PROJECT_DIR, 'photos\\go.png'),
                         os.path.join(PROJECT_DIR, 'photos\\jump.png'),
                         os.path.join(PROJECT_DIR, 'photos\\attack.png'),
                         os.path.join(PROJECT_DIR, 'photos\\hitted.png'),
                         os.path.join(PROJECT_DIR, 'photos\\dead.png'),
+                        )
+
+ARTOM_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos\\stay_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos\\go_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos\\jump_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos\\attack_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos\\hitted_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos\\dead_artom.png'),
                         )
 
 BUTTON_RELEASED_IMAGE_PATH = 'photos/released.jpeg'
@@ -44,6 +52,16 @@ BUTTON_DISABLED_IMAGE_PATH = 'photos/disabled.jpeg'
 SERVER = 'localhost'
 PORT = 5555
 
+characters = {
+    '1' : {
+        'name' : 'grer',
+        'animation_list' : GRER_IMAGE_PATHES
+        },
+    '2' : {
+        'name' : 'artom',
+        'animation_list' : ARTOM_IMAGE_PATHES
+        },
+}
 
 #@log_class
 class Menu():
@@ -75,7 +93,7 @@ class Menu():
         for button in self.buttons:
             button.hide()
                         
-    def get_choice (self, labels=[]):
+    def get_choice (self, labels=[], update_buttons_enabled=True):
         choice = ''
         self.screen.set_background(self.background_path)
         if labels:
@@ -88,12 +106,13 @@ class Menu():
         for button in self.buttons:
             button.show()
         self.active = True
-        threading.Thread(target=self.update_buttons_state, args=(), daemon=True).start()
+        if update_buttons_enabled:
+            threading.Thread(target=self.update_buttons_state, args=(), daemon=True).start()
         while self.active:
             update()
             for button in self.buttons:
                 if button.get_pressed():
-                    choice = button.text
+                    choice = button.extra_data
                     update()
                     time.sleep(0.5)
                     self.active = False
@@ -113,8 +132,11 @@ class Menu():
                 button_state = not ring_state
                 button.enable(button_state)
     
-    def add_buttons(self, button_titles):
-        for title in button_titles:
+    def add_buttons(self, button_titles, buttons_extra_data=[], hide=False):
+        for i in range(len(button_titles) - len(buttons_extra_data)):
+            buttons_extra_data.append(None)
+
+        for title, extra_data in zip(button_titles, buttons_extra_data):
             for button in self.buttons:
                 new_x_pos = button.pos[0] + self.button_size[0] + self.button_margin
                 button.move_to((new_x_pos, self.button_y))
@@ -124,8 +146,18 @@ class Menu():
                                        button_pos,
                                        w=self.button_size[0],
                                        h=self.button_size[1],
+                                       extra_data=extra_data,
+                                       hide=hide,
                                        )
             self.buttons.insert(0, button)
+    
+    def remove_button(self, button_name):
+        button_index = None
+        for index, button in enumerate(self.buttons):
+            if button.text == button_name:
+                button_index = index
+                break
+        self.buttons.pop(button_index)
     
 
 #@log_class
@@ -133,7 +165,7 @@ class Button(epg.Sprite, epg.Label):
     RELEASED = 0
     PRESSED = 1
     DISABLED = 2
-    def __init__(self, button_image_paths, text, pos, w=50, h=50, savescale=False):
+    def __init__(self, button_image_paths, text, pos, w=50, h=50, savescale=False, extra_data=None, hide=False):
         epg.Sprite.__init__(self, button_image_paths[0], pos, w=w, h=h, savescale=savescale)
         epg.Label.__init__(self, text=text, x=pos[0], y=pos[1], center=True)
         self.skin_index = self.RELEASED
@@ -141,6 +173,10 @@ class Button(epg.Sprite, epg.Label):
         self.animation_list.append(self.load_img(img=button_image_paths[self.RELEASED]))
         self.animation_list.append(self.load_img(img=button_image_paths[self.PRESSED]))
         self.animation_list.append(self.load_img(img=button_image_paths[self.DISABLED]))
+        self.extra_data = extra_data or text
+        print(extra_data, self.extra_data, text, "extra data")
+        if hide:
+            self.hide()
 
     
     def set_skin(self, skin_index):
@@ -198,8 +234,7 @@ current_fighter_config = ()
 ground_level = SCREEN_HEIGHT - 254
 
 @to_log
-def initialize():
-    global current_fighter_id, rings, current_fighter_config, server
+def connect():
     disconnect = True
     while disconnect:
         try:
@@ -209,6 +244,17 @@ def initialize():
             log.error('connection failed')
             time.sleep(1)
         update()
+
+def sync_characters():
+    char_ids = server.recv()
+    character_names = [characters[id].get('name') for id in char_ids]
+    character_menu.add_buttons(character_names, char_ids)
+
+def initialize(char_id):
+    global current_fighter_id, rings, current_fighter_config
+    if char_id == 'exit':
+        return
+    server.send(char_id)
     start_game_state = server.get_start()
     print(f'start game state:{start_game_state}')
     current_fighter_id, current_fighter_config, rings = start_game_state
@@ -216,7 +262,7 @@ def initialize():
     server.connect_extra_socket(current_fighter_id)
     button_names = [f'Ринг на {ring}' for ring in rings]
     button_names.reverse()
-    menu.add_buttons(button_names)
+    main_menu.add_buttons(button_names)
     create_fighters({current_fighter_id: current_fighter_config}, show=False, current=True)
     
 @to_log
@@ -236,7 +282,7 @@ def create_fighters(game_state, show=True, current=False):
     for id, fighter_config in game_state.items():
         print(f'fighter {id} created')
         dir, x_pos, y_pos, wigth, height = fighter_config
-        fighter = Fighter(animation_pathes=FIGHTER_IMAGE_PATHES,
+        fighter = Fighter(animation_pathes=GRER_IMAGE_PATHES,
                          x_pos=x_pos,
                          y_pos=y_pos,
                          flip=dir,
@@ -331,10 +377,10 @@ label_timer = epg.Label(text='',
                         show=False,
                         )
     
-menu = Menu(screen,
+main_menu = Menu(screen,
             server,
             BACK_IMAGE_PATH, 
-            ('выйти',),
+            ('characters', 'выйти',),
             (BUTTON_RELEASED_IMAGE_PATH, BUTTON_PRESSED_IMAGE_PATH, BUTTON_DISABLED_IMAGE_PATH),
             (90, 90),
             button_order='h',
@@ -351,16 +397,39 @@ waiting_menu = Menu(screen,
                     button_margin=70,
                    )
 
-initialize()     #TODO перезапуск инициализации при потере подключения
+character_menu = Menu(
+    screen,
+    server,
+    BACK_IMAGE_PATH,
+    ('exit',),
+    (BUTTON_RELEASED_IMAGE_PATH, BUTTON_PRESSED_IMAGE_PATH, BUTTON_DISABLED_IMAGE_PATH),
+    (90, 90),
+    button_order='h',
+    button_margin=70
+)
 
-while True: # server.connected: TODO крутить цикл пока клиент подключен
-    #threading.Thread(target=start_game).start()
-    
+connect()
+sync_characters()
+character_id = character_menu.get_choice(update_buttons_enabled=False)
+print("CHAR_ID : ", character_id)
+initialize(character_id)     #TODO перезапуск инициализации при потере подключения
+
+character_menu.remove_button('exit')
+character_menu.add_buttons(('back',), hide=True)
+
+while character_id != 'exit': # server.connected: TODO крутить цикл пока клиент подключен
     print(f'start menu')
-    choice = menu.get_choice()
+    choice = main_menu.get_choice()
 
     if choice == 'выйти':
         break
+    
+    elif choice == 'characters':
+        character_choice = None
+        while character_id != 'back':
+            character_id = character_menu.get_choice(update_buttons_enabled=False)
+            current_fighter.change_animation_list(characters[character_id]['animation_list'])
+
 
     else:
         ring_num = choice[-1]
