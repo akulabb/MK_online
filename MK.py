@@ -264,6 +264,8 @@ def initialize(char_id):
     button_names.reverse()
     main_menu.add_buttons(button_names)
     create_fighters({current_fighter_id: current_fighter_config}, show=False, current=True)
+    current_fighter.change_animation_list(characters[char_id]['animation_list'])
+    pygame.display.set_caption(str(current_fighter.id))
     
 @to_log
 def start_game():
@@ -415,20 +417,14 @@ print("CHAR_ID : ", character_id)
 initialize(character_id)     #TODO перезапуск инициализации при потере подключения
 
 character_menu.remove_button('exit')
-character_menu.add_buttons(('back',), hide=True)
 
-while character_id != 'exit': # server.connected: TODO крутить цикл пока клиент подключен
+while character_id != 'exit' or choice == 'выйти': # server.connected: TODO крутить цикл пока клиент подключен
     print(f'start menu')
     choice = main_menu.get_choice()
-
-    if choice == 'выйти':
-        break
     
-    elif choice == 'characters':
-        character_choice = None
-        while character_id != 'back':
-            character_id = character_menu.get_choice(update_buttons_enabled=False)
-            current_fighter.change_animation_list(characters[character_id]['animation_list'])
+    if choice == 'characters':
+        character_id = character_menu.get_choice(update_buttons_enabled=False)
+        current_fighter.change_animation_list(characters[character_id]['animation_list'])
 
 
     else:

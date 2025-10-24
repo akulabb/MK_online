@@ -64,7 +64,6 @@ class Fighter(epg.Sprite):
         self.gravity = gravity
         self.fall_speed = 0
         self.ground_level = ground_level
-        self.skins_dir = False
         self.knife = None
         self.direction = flip
         self.enemy = None
@@ -149,8 +148,10 @@ class Fighter(epg.Sprite):
     
     def change_animation_list(self, new_animation_list):
         self.animation_list = []
+        self.skins_dir = False
         for path in new_animation_list:
             self.animation_list.append(self.load_img(img=path, colorkey=(43, 205, 27)))
+        self.set_skin(STAY)
         
     def hide(self,):
         super().hide()
