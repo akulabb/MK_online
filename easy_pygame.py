@@ -162,7 +162,7 @@ class Label():
         labels[self._id] = self
         
     def show(self):
-        print(f'Showing label{self._id}')
+        #print(f'Showing label{self._id}')
         labels[self._id] = self
             
     def hide(self):

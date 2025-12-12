@@ -26,23 +26,23 @@ WIDTH_HALF = int(SCREEN_WIDTH/2)
 epg.AUTO_UPDATE = False
 
 GRAVITY = 2
-#EARTH = 716
+#EARTH = 716MAX
 
 PROJECT_DIR = os.getcwd()
-GRER_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos\\stay.png'),
-                        os.path.join(PROJECT_DIR, 'photos\\go.png'),
-                        os.path.join(PROJECT_DIR, 'photos\\jump.png'),
-                        os.path.join(PROJECT_DIR, 'photos\\attack.png'),
-                        os.path.join(PROJECT_DIR, 'photos\\hitted.png'),
-                        os.path.join(PROJECT_DIR, 'photos\\dead.png'),
+GRER_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/stay.png'),
+                        os.path.join(PROJECT_DIR, 'photos/go.png'),
+                        os.path.join(PROJECT_DIR, 'photos/jump.png'),
+                        os.path.join(PROJECT_DIR, 'photos/attack.png'),
+                        os.path.join(PROJECT_DIR, 'photos/hitted.png'),
+                        os.path.join(PROJECT_DIR, 'photos/dead.png'),
                         )
 
-ARTOM_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos\\stay_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos\\go_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos\\jump_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos\\attack_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos\\hitted_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos\\dead_artom.png'),
+ARTOM_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/stay_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos/go_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos/jump_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos/attack_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos/hitted_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos/dead_artom.png'),
                         )
 
 BUTTON_RELEASED_IMAGE_PATH = 'photos/released.jpeg'
@@ -283,8 +283,8 @@ def create_fighters(game_state, show=True, current=False):
 #    fighters = []
     for id, fighter_config in game_state.items():
         print(f'fighter {id} created')
-        dir, x_pos, y_pos, wigth, height = fighter_config
-        fighter = Fighter(animation_pathes=GRER_IMAGE_PATHES,
+        dir, x_pos, y_pos, wigth, height, char_id = fighter_config
+        fighter = Fighter(animation_pathes=characters[char_id]['animation_list'],
                          x_pos=x_pos,
                          y_pos=y_pos,
                          flip=dir,
@@ -304,27 +304,37 @@ def create_fighters(game_state, show=True, current=False):
 def fight():
     screen.set_background(EARTH_IMAGE_PATH)
     label_timer.show()
+    current_fighter.show()
     print('файтеры', len(fighters))
     while True:
         game_state = {}
-        print(fighters)
         options = current_fighter.check_options()
         game_state = server.get_game_state(options)
-        print(f'GAME STATE:{game_state}')
-        if type(game_state) == list:    #конец игры
-            print('ОКОНЧАНИЕ РАУНДА...')
-            print(f'winners: {game_state}')
-            print(fighters)
-            server.send('end')
-            for fighter in fighters:
-                print(f'Hiding fighter {fighter.id}')
-                fighter.hide()
-            print('Раунд окончен.')
-            return game_state
-        print(fighters)
+        #print(f'GAME STATE:{game_state}')
+        if type(game_state) == list:
+            if game_state[0] == 'game over':    #конец игры
+                print('ОКОНЧАНИЕ РАУНДА...')
+                print(f'winners: {game_state}')
+                print(fighters, 'game_over')
+                server.send('end')
+                for fighter in fighters:
+                    print(f'Hiding fighter {fighter.id}')
+                    fighter.hide()
+                print('Раунд окончен.')
+                return game_state
+            elif game_state[0] == 'new players':
+                game_state.pop(0)
+                new_players = {fighter_config.pop(0) : fighter_config for fighter_config in game_state}
+                fighters_ids = [fighter.id for fighter in fighters]
+                for fighter_id in fighters_ids:
+                    if fighter_id in new_players.keys():
+                        new_players.pop(fighter_id)
+                create_fighters(new_players)
+                update()
+                continue
         for fighter in fighters:        #отрисовка нового состояния игры
             fighter_state = game_state.get(str(fighter.id))
-            print('FIGHTER STATE', fighter_state)
+            #print('FIGHTER STATE', fighter_state)
             if not fighter_state:
                 print('Потеряно соеденение. fighter_state отсутствует.')
                 print(f'game_state: {game_state}')
@@ -333,8 +343,8 @@ def fight():
         timer = game_state.pop('timer')
         if not timer == None:       #обновление таймера
             label_timer.set_value(get_str_time(timer))
-        log.info(f'Timer:{timer}')
-        if len(game_state) > len(fighters):     #добавление новых игроков
+        #log.info(f'Timer:{timer}')
+        '''if len(game_state) > len(fighters):     #добавление новых игроков
             print('new fighters on server')
             new_fighters = {}
             print(fighters)
@@ -347,11 +357,12 @@ def fight():
                                          new_fighter_state[1],
                                          SPRITE_WIDTH,
                                          SPRITE_HEIGHT,
+                                         new_fighter_state[6],
                                         )
                     print('new_fighter_state:', new_fighter_state)
                     new_fighters[fighter_id] = new_fighter_state
-            create_fighters(new_fighters)
-        elif len(game_state) < len(fighters):       #удаление вышедших игроков
+            create_fighters(new_fighters)'''
+        if len(game_state) < len(fighters):       #удаление вышедших игроков
             index = None
             for fighter in fighters:
                 if not fighter.id in game_state.keys():
@@ -431,10 +442,10 @@ while character_id != 'exit' or choice == 'выйти': # server.connected: TODO
         ring_num = choice[-1]
         server.send(ring_num)
         winners = fight()
-        fighters = []
+        fighters = [current_fighter]
         label_game_over.show()
         update()
         time.sleep(5)
         label_game_over.hide()
 #TODO закрыть сокеты перед завершением программы
-exit()
+exit()  

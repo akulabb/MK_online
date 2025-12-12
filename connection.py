@@ -9,6 +9,7 @@ class Connection:
         self.extra_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     def connect_main_socket(self):
+        self.main_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.main_socket.connect(self.adress)
         print('------------')
         self.send('main')

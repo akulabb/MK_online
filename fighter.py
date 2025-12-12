@@ -1,5 +1,5 @@
 import easy_pygame as epg
-from easy_pygame import UP, DOWN, LEFT, RIGHT, BORDER
+from easy_pygame import UP, DOWN, BORDER
 import pygame
 import inspect
 import logging as mainlog
@@ -43,7 +43,8 @@ log.addHandler(fhandler)
 def to_log(func):
     def sub_func(*args, **kwargs):
         if not func.__name__ in NOT_LOGGING_FUNCTION:
-            log.info(f"** {func.__name__} **")
+            #log.info(f"** {func.__name__} **")
+            pass
         result = func(*args, **kwargs)
         return result
     return sub_func
@@ -85,6 +86,7 @@ class Fighter(epg.Sprite):
         # 0 = stay, 1 = go, 2 = jump, 3 = attack, 4 = hitted, 5 = dead
 
     def check_options(self, ):
+        #print('START skins_dir : ', self.skins_dir)
         options = {'move' : 0,
                    'direction' : self.skins_dir,
                    'jump' : False,
@@ -94,16 +96,18 @@ class Fighter(epg.Sprite):
         keystate = pygame.key.get_pressed()
                     
         if keystate[pygame.K_a]:
-            options['direction'] = LEFT
+            #print('Key pressed A')
+            options['direction'] = LEFT             #True
             options['move'] = -1
         if keystate[pygame.K_d]:
-            options['direction'] = RIGHT
+            #print('Key pressed D')
+            options['direction'] = RIGHT            #False
             options['move'] = 1
         if keystate[pygame.K_SPACE]:
             options['jump'] = True
         if keystate[pygame.K_e]:
             options['hit'] = True
-#        print(options)
+        #print('options dir : ', options['direction'], 'skins_dir : ', self.skins_dir)
         return options
 
         
@@ -129,7 +133,8 @@ class Fighter(epg.Sprite):
         self.set_skin(DEAD)
     
     def apply_game_state(self, state):
-        x_pos, y_pos, health, action, self.direction, hide = state
+        x_pos, y_pos, health, action, self.direction, hide, char_id = state
+        #print(f"Apply game state\nDirection : {self.direction}, Self skins dir : {self.skins_dir}")
         self.move_to((x_pos, y_pos))
         self.health_bar.set_value(health)
         self.actions[action]()
@@ -140,9 +145,11 @@ class Fighter(epg.Sprite):
     
     def set_skin(self, skin_index):
         if self.skins_dir != self.direction:
+            #print(f'Self skins dir changed from {self.skins_dir} to {self.direction}')
             for index, skin in enumerate(self.animation_list):
                 self.animation_list[index] = pygame.transform.flip(skin, flip_x=True, flip_y=False)             #TODO посмотреть как работает flip и доделать разворот картинки
             self.skins_dir = self.direction
+            #print(f"self Skins DIR: {self.skins_dir}")
         self.image = self.orig_image = self.animation_list[skin_index]
         self.skin_index = skin_index
     
@@ -156,12 +163,12 @@ class Fighter(epg.Sprite):
     def hide(self,):
         super().hide()
         self.health_bar.hide()
-        print('HIDE')
+        #print('HIDE')
     
     def show(self,):
         super().show()
         self.health_bar.show()
-        print('SHOW')
+        #print('SHOW')
         
     def __repr__(self,):
         return f'Fighter {self.id}'

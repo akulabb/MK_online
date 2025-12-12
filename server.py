@@ -23,7 +23,6 @@ PORT = 5555
 
 FIGHT_TIME = 600
 timer = FIGHT_TIME
-recent_time = 0
 
 STAY = 0
 GO = 1
@@ -84,9 +83,12 @@ def log_class(class_to_log, ):
             setattr(class_to_log, name, to_log(method))
     return class_to_log
 
+def get_messaged_list(list_to_change: list, message: str) -> list:
+    return list_to_change.insert(0, message)
+
 @log_class
 class Character():
-    def __init__(self, id : int, name : str,):
+    def __init__(self, id: str, name: str,):
         self.id = id
         self.name = name
         self.max_health = 100
@@ -216,7 +218,7 @@ class Player(threading.Thread):
         self.rect.update(pos_x, pos_y)
         
     def get_self_state(self):
-        return (self.rect.center_x, self.rect.center_y, self.health, self.action, self.dir, self.mode)
+        return (self.rect.center_x, self.rect.center_y, self.health, self.action, self.dir, self.mode, self.character.id)
     
     def waiting_for_second_socket(self):
         self.say('start waiting for second socket')
@@ -246,7 +248,8 @@ class Player(threading.Thread):
                         self.rect.center_x, 
                         self.rect.center_y, 
                         self.rect.width,
-                        self.rect.height
+                        self.rect.height,
+                        self.character.id,
                        )
         start_state = (self.id,
                        start_config,
@@ -278,11 +281,12 @@ class Player(threading.Thread):
                     player_connected = False
                     break
                 self.apply_options(options)
-                send(ring.get_game_state(self.update_timer_value), self.socket)
+                send(ring.get_game_state(self.id, self.update_timer_value), self.socket)
                 if self.update_timer_value:
                     self.update_timer_value = False
                 winners = ring.game_over()
                 if winners:
+                    winners.insert(0, 'game over')
                     self.say('GAME OVER')
                     recieve(self.socket)
                     self.say('sending finish')
@@ -331,6 +335,8 @@ class Ring(threading.Thread):
         self.alive_players_num = 0
         self.ring_enable = False
         self.fight = False
+        self.add_new_player = False
+        self.reuesters_ids = []
         self.players = []
         self.winners = []
         self.winners_ids = []
@@ -340,9 +346,11 @@ class Ring(threading.Thread):
             return self.winners_ids
     
     def add_player(self, player):
+        self.add_new_player = True
+        self.reuesters_ids.clear()
         self.enable()
         self.players.append(player)
-        self.say('It is new player on our ring! His name is {player.name}')
+        self.say(f'It is new player on our ring! His name is {player.name}')
         
     def _remove_player_from(self, id, container):
         index = None
@@ -353,13 +361,13 @@ class Ring(threading.Thread):
             container.pop(index)
         return index
             
-    def remove_player(self, id, clean_winners=True):
+    def remove_player(self, id: int, clean_winners=True):
         remove = False
-        if self._remove_player_from(id, self.players):
+        if self._remove_player_from(id, self.players) != None:
             remove = True
             self.say(f'удален игрок {id} из players')
         if clean_winners:
-            if self._remove_player_from(id, self.winners):
+            if self._remove_player_from(id, self.winners) != None:
                 remove = True
                 self.say(f'удален игрок {id} из winners')
                 self._remove_player_from(id, self.winners_ids)
@@ -428,13 +436,32 @@ class Ring(threading.Thread):
             print(f'Ring clear')
             print()
             
-    def get_game_state(self, update_timer=False):
+    def get_game_state(self, requester_id: int, update_timer=False):
         game_state = {'timer': None}
-        for player in self.players:
-            game_state[player.id] = player.get_self_state()
-        if update_timer:
-            game_state['timer'] = self.timer
-            recent_time = self.timer
+        if self.add_new_player and not requester_id in self.reuesters_ids:
+            game_state = ['new players']
+            for player in self.players: 
+                player_config = (player.id,
+                        player.dir,
+                        player.rect.center_x, 
+                        player.rect.center_y, 
+                        player.rect.width,
+                        player.rect.height,
+                        player.character.id,
+                       )
+                game_state.append(player_config)
+            self.reuesters_ids.append(requester_id)
+            players_ids = [player.id for player in self.players]
+            players_ids.sort()
+            self.reuesters_ids.sort()
+            if self.reuesters_ids == players_ids:
+                self.add_new_player = False
+                self.reuesters_ids.clear()
+        else:
+            for player in self.players:
+                game_state[player.id] = player.get_self_state()
+            if update_timer:
+                game_state['timer'] = self.timer
         return game_state
 
 
@@ -468,8 +495,8 @@ def recieve(client_socket,):
         return data
 
 
-grer = Character(1, 'grer')
-artom = Character(2, 'artom')
+grer = Character('1', 'grer')
+artom = Character('2', 'artom')
 
 ring2 = Ring(2)
 ring3 = Ring(3)
