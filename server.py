@@ -335,7 +335,8 @@ class Ring(threading.Thread):
         self.alive_players_num = 0
         self.ring_enable = False
         self.fight = False
-        self.add_new_player = False
+        self.new_player_event = ServerEvent(name="add_new_player")
+        self.need_to_remove_player = False
         self.reuesters_ids = []
         self.players = []
         self.winners = []
@@ -346,7 +347,7 @@ class Ring(threading.Thread):
             return self.winners_ids
     
     def add_player(self, player):
-        self.add_new_player = True
+        self.new_player_event.activate()
         self.reuesters_ids.clear()
         self.enable()
         self.players.append(player)
@@ -363,6 +364,7 @@ class Ring(threading.Thread):
             
     def remove_player(self, id: int, clean_winners=True):
         remove = False
+        self.need_to_remove_player = True
         if self._remove_player_from(id, self.players) != None:
             remove = True
             self.say(f'удален игрок {id} из players')
@@ -438,7 +440,7 @@ class Ring(threading.Thread):
             
     def get_game_state(self, requester_id: int, update_timer=False):
         game_state = {'timer': None}
-        if self.add_new_player and not requester_id in self.reuesters_ids:
+        if self.new_player_event.is_actual_for(requester_id, self.players):
             game_state = ['new players']
             for player in self.players: 
                 player_config = (player.id,
@@ -450,19 +452,35 @@ class Ring(threading.Thread):
                         player.character.id,
                        )
                 game_state.append(player_config)
-            self.reuesters_ids.append(requester_id)
-            players_ids = [player.id for player in self.players]
-            players_ids.sort()
-            self.reuesters_ids.sort()
-            if self.reuesters_ids == players_ids:
-                self.add_new_player = False
-                self.reuesters_ids.clear()
         else:
             for player in self.players:
                 game_state[player.id] = player.get_self_state()
             if update_timer:
                 game_state['timer'] = self.timer
         return game_state
+
+class ServerEvent:
+    def __init__(self, name):
+        self.requesters = []
+        self.name = name
+        self.is_active = False
+    
+    def activate(self, ):
+        self.is_active = True
+    
+    def deactivate(self, ):
+        self.is_active = False
+
+    def is_actual_for(self, id, players):
+        if self.is_active and not id in self.requesters:
+            self.requesters.append(id)
+            players_ids = [player.id for player in players]
+            players_ids.sort()
+            self.requesters.sort()
+            if self.requesters == players_ids:
+                self.deactivate()
+                self.requesters.clear()
+            return True
 
 
 @to_log

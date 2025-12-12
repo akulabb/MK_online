@@ -344,24 +344,6 @@ def fight():
         if not timer == None:       #обновление таймера
             label_timer.set_value(get_str_time(timer))
         #log.info(f'Timer:{timer}')
-        '''if len(game_state) > len(fighters):     #добавление новых игроков
-            print('new fighters on server')
-            new_fighters = {}
-            print(fighters)
-            for fighter_id in game_state.keys():
-                if not fighter_id in tuple(str(fighter.id) for fighter in fighters):
-                    print(f'not found id {fighter_id} in local ides')
-                    new_fighter_state = game_state.get(fighter_id)
-                    new_fighter_state = (new_fighter_state[4],
-                                         new_fighter_state[0],
-                                         new_fighter_state[1],
-                                         SPRITE_WIDTH,
-                                         SPRITE_HEIGHT,
-                                         new_fighter_state[6],
-                                        )
-                    print('new_fighter_state:', new_fighter_state)
-                    new_fighters[fighter_id] = new_fighter_state
-            create_fighters(new_fighters)'''
         if len(game_state) < len(fighters):       #удаление вышедших игроков
             index = None
             for fighter in fighters:
