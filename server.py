@@ -64,9 +64,9 @@ players = {num:None for num in range(20)}
 
 game_started = False
 
-max_players_num = 0
-connected_players_num = 0
-alive_players_num = 0
+#max_players_num = 0
+#connected_players_num = 0
+#alive_players_num = 0
 
 def to_log(func):
     def sub_func(*args, **kwargs):
@@ -162,7 +162,7 @@ class Player(threading.Thread):
          #   print('attack:enemy id', hitted_enemy.id)
     
     def hitted(self, damage):
-        global alive_players_num
+#        global alive_players_num
         self.hitted_delay = HITTED_DELAY
         if self.mode == IN_GAME:
             if self.health > 0 and not self.immortal:
@@ -170,8 +170,8 @@ class Player(threading.Thread):
                 self.action = HITTED
             if self.health < 1 and self.action != DEAD:
                 self.action = DEAD
-                alive_players_num -= 1
-                print(f'player: {self.id} dead, alive_players_num: {alive_players_num}')
+#                alive_players_num -= 1
+#                print(f'player: {self.id} dead, alive_players_num: {alive_players_num}')
     #    print('hitted:health', self.health)
     
     def apply_options(self, options):
@@ -284,13 +284,13 @@ class Player(threading.Thread):
                 send(ring.get_game_state(self.id, self.update_timer_value), self.socket)
                 if self.update_timer_value:
                     self.update_timer_value = False
-                winners = ring.game_over()
-                if winners:
-                    winners.insert(0, 'game over')
+                winners_ids = ring.game_over()
+                if winners_ids:
+                    winners_ids.insert(0, 'game over')
                     self.say('GAME OVER')
                     recieve(self.socket)
                     self.say('sending finish')
-                    send(winners, self.socket)
+                    send(winners_ids, self.socket)
                     self.say('recieving finish confirmation')
                     confirm = recieve(self.socket)
                     self.say(f'confirm: {confirm}')
@@ -336,15 +336,15 @@ class Ring(threading.Thread):
         self.ring_enable = False
         self.fight = False
         self.new_player_event = ServerEvent(name="add_new_player")
+        self.remove_player_event = ServerEvent(name="remove_new_player")
         self.need_to_remove_player = False
         self.reuesters_ids = []
         self.players = []
         self.winners = []
-        self.winners_ids = []
     
     def game_over(self,):
         if not self.ring_enable:
-            return self.winners_ids
+            return [winner.id for winner in self.winners]
     
     def add_player(self, player):
         self.new_player_event.activate()
@@ -367,13 +367,12 @@ class Ring(threading.Thread):
         self.need_to_remove_player = True
         if self._remove_player_from(id, self.players) != None:
             remove = True
+            self.remove_player_event.activate(id)
             self.say(f'удален игрок {id} из players')
         if clean_winners:
             if self._remove_player_from(id, self.winners) != None:
                 remove = True
                 self.say(f'удален игрок {id} из winners')
-                self._remove_player_from(id, self.winners_ids)
-                self.say(f'удален игрок {id} из winners_ids')
         return remove 
         
     def enable(self, enable=True):
@@ -408,7 +407,6 @@ class Ring(threading.Thread):
             self.timer = self.playing_time
             alive_players = self.players_num 
             while alive_players > 1 and self.timer > 0:
-                alive_players = self.players_num
                 time.sleep(1)
                 self.timer -= 1
                 for player in self.players:
@@ -426,7 +424,6 @@ class Ring(threading.Thread):
                         new_winners.append(winner)
                 self.winners = new_winners
                    # health = winner.health
-            self.winners_ids = [winner.id for winner in self.winners]
             self.enable(False)
             self.enable_players_immortal()
             while self.players:
@@ -452,6 +449,9 @@ class Ring(threading.Thread):
                         player.character.id,
                        )
                 game_state.append(player_config)
+        elif self.remove_player_event.is_actual_for(requester_id, self.players):
+            game_state = ['remove_player', self.remove_player_event.extra_data]
+            print(f'Sending remove pleyer {self.remove_player_event.extra_data} package to {requester_id}')
         else:
             for player in self.players:
                 game_state[player.id] = player.get_self_state()
@@ -464,8 +464,10 @@ class ServerEvent:
         self.requesters = []
         self.name = name
         self.is_active = False
+        self.extra_data = None
     
-    def activate(self, ):
+    def activate(self, extra_data=None):
+        self.extra_data = extra_data
         self.is_active = True
     
     def deactivate(self, ):
@@ -485,13 +487,13 @@ class ServerEvent:
 
 @to_log
 def remove_player(id):              #TODO найти на каком ринге игрок и удалить его оттуда(если есть)
-    global connected_players_num, rings
+#    global connected_players_num, rings
     players[id].socket.close()
     players[id] = None
     for ring in rings.values():
         ring.remove_player(id)
     log.debug(f'игрок закончился с id : {id}')
-    connected_players_num -= 1
+#    connected_players_num -= 1
 
 def send(data, client_socket):
     try:
@@ -545,7 +547,7 @@ while True:
                 player = Player(id, new_socket, GRAVITY)
                 player.start()
                 players[id] = player
-                connected_players_num += 1
+#                connected_players_num += 1
                 break
         else:
             print('Максимальное количество игроков')

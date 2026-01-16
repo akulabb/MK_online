@@ -306,13 +306,16 @@ def fight():
     label_timer.show()
     current_fighter.show()
     print('файтеры', len(fighters))
+    
     while True:
         game_state = {}
         options = current_fighter.check_options()
         game_state = server.get_game_state(options)
         #print(f'GAME STATE:{game_state}')
         if type(game_state) == list:
-            if game_state[0] == 'game over':    #конец игры
+            
+            #конец игры
+            if game_state[0] == 'game over':    
                 print('ОКОНЧАНИЕ РАУНДА...')
                 print(f'winners: {game_state}')
                 print(fighters, 'game_over')
@@ -322,6 +325,8 @@ def fight():
                     fighter.hide()
                 print('Раунд окончен.')
                 return game_state
+            
+            #добавление игроков
             elif game_state[0] == 'new players':
                 game_state.pop(0)
                 new_players = {fighter_config.pop(0) : fighter_config for fighter_config in game_state}
@@ -332,25 +337,38 @@ def fight():
                 create_fighters(new_players)
                 update()
                 continue
-        for fighter in fighters:        #отрисовка нового состояния игры
+            
+            #удаление вышедших игроков
+            elif game_state[0] == 'remove_player':
+                print('REMOVE PLAYER _______')
+                id_to_remove = game_state[1]
+                index = None
+                for fighter in fighters:
+                    if fighter.id == id_to_remove:
+                        index = fighters.index(fighter)
+                        fighter.hide()
+                if index != None:
+                    fighters.pop(index)
+                print(f'deleted fighter {id_to_remove}')
+                continue
+        
+        #отрисовка нового состояния игры
+        for fighter in fighters:        
             fighter_state = game_state.get(str(fighter.id))
             #print('FIGHTER STATE', fighter_state)
             if not fighter_state:
-                print('Потеряно соеденение. fighter_state отсутствует.')
-                print(f'game_state: {game_state}')
+                #print('Потеряно соеденение. fighter_state отсутствует.')
+                #print(f'game_state: {game_state}')
                 continue
             fighter.apply_game_state(fighter_state)
+        
+        #обновление таймера
         timer = game_state.pop('timer')
-        if not timer == None:       #обновление таймера
+        if not timer == None:       
             label_timer.set_value(get_str_time(timer))
         #log.info(f'Timer:{timer}')
-        if len(game_state) < len(fighters):       #удаление вышедших игроков
-            index = None
-            for fighter in fighters:
-                if not fighter.id in game_state.keys():
-                    index = fighters.index(fighter)
-            if index != None:
-                fighters.pop(index)
+        
+        
         update()
     label_timer.hide()
     print('end')
