@@ -10,6 +10,7 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 800
 RIGHT = False
 LEFT = True
+BEST_COLORKEY = (43, 205, 27)
 
 HEALTHBAR_OFFSET = int(SCREEN_WIDTH / 7)
 
@@ -57,6 +58,22 @@ def log_class(class_to_log):
     return class_to_log
 
 
+class Animations:
+    def __init__(self, animation_path: str, size: tuple, colorkey=BEST_COLORKEY):
+        self.skins = []
+        self.size = size
+        self.colorkey = colorkey
+        for path in os.listdir(animation_path):
+            skin_path = os.pathjoin((animation_path, path))
+            self.skins.append(load_skin(skin_path))
+    
+    def load_skin(self, skin_path):
+        skin = pygame.image.load(skin_path)
+        skin = pygame.transform.scale(skin, self.size)
+        skin.set_colorkey(self.colorkey)
+        return skin
+
+
 @log_class
 class Fighter(epg.Sprite):
     def __init__(self, animation_pathes, x_pos, y_pos, flip, wigth, height, ground_level, gravity, id, img=epg.GREEN, show=True):
@@ -84,6 +101,8 @@ class Fighter(epg.Sprite):
                         self.dead
                        )
         # 0 = stay, 1 = go, 2 = jump, 3 = attack, 4 = hitted, 5 = dead
+    
+    
 
     def check_options(self, ):
         #print('START skins_dir : ', self.skins_dir)

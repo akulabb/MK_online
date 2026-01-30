@@ -16,10 +16,9 @@ SPRITE_WIDTH = 130
 SPRITE_HEIGHT = 130
 
 FPS = 30
-BALL_IMAGE_PATH = 'photos/ball.png'
-EARTH_IMAGE_PATH = 'photos/earth.png'
-BACK_IMAGE_PATH = 'photos/back.png'
-WAITING_BACK_IMAGE_PATH = 'photos/back2.png'
+EARTH_IMAGE_PATH = 'photos/earth/earth.png'
+BACK_IMAGE_PATH = 'photos/background/back_1.png'
+WAITING_BACK_IMAGE_PATH = 'photos/background/back_2.png'
 
 HEIGHT_HALF = int(SCREEN_HEIGHT/2)
 WIDTH_HALF = int(SCREEN_WIDTH/2)
@@ -29,25 +28,25 @@ GRAVITY = 2
 #EARTH = 716MAX
 
 PROJECT_DIR = os.getcwd()
-GRER_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/stay.png'),
-                        os.path.join(PROJECT_DIR, 'photos/go.png'),
-                        os.path.join(PROJECT_DIR, 'photos/jump.png'),
-                        os.path.join(PROJECT_DIR, 'photos/attack.png'),
-                        os.path.join(PROJECT_DIR, 'photos/hitted.png'),
-                        os.path.join(PROJECT_DIR, 'photos/dead.png'),
+GRER_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/grer/stay_1.png'),
+                        os.path.join(PROJECT_DIR, 'photos/grer/go.png'),
+                        os.path.join(PROJECT_DIR, 'photos/grer/jump.png'),
+                        os.path.join(PROJECT_DIR, 'photos/grer/attack.png'),
+                        os.path.join(PROJECT_DIR, 'photos/grer/hitted.png'),
+                        os.path.join(PROJECT_DIR, 'photos/grer/dead.png'),
                         )
 
-ARTOM_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/stay_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos/go_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos/jump_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos/attack_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos/hitted_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos/dead_artom.png'),
+ARTOM_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/artom/stay_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos/artom/go_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos/artom/jump_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos/artom/attack_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos/artom/hitted_artom.png'),
+                        os.path.join(PROJECT_DIR, 'photos/artom/dead_artom.png'),
                         )
 
-BUTTON_RELEASED_IMAGE_PATH = 'photos/released.jpeg'
-BUTTON_PRESSED_IMAGE_PATH = 'photos/pressed.jpeg'
-BUTTON_DISABLED_IMAGE_PATH = 'photos/disabled.jpeg'
+BUTTON_RELEASED_IMAGE_PATH = 'photos/button/released.jpeg'
+BUTTON_PRESSED_IMAGE_PATH = 'photos/button/pressed.jpeg'
+BUTTON_DISABLED_IMAGE_PATH = 'photos/button/disabled.jpeg'
 
 SERVER = 'localhost'
 PORT = 5555
