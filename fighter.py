@@ -58,8 +58,8 @@ def log_class(class_to_log):
     return class_to_log
 
 
-class Animations:
-    def __init__(self, animation_path: str, size: tuple, colorkey=BEST_COLORKEY):
+class Animation:
+    def __init__(self, animation_path: str, size: tuple, colorkey=BEST_COLORKEY,):
         self.skins = []
         self.size = size
         self.colorkey = colorkey
@@ -72,6 +72,10 @@ class Animations:
         skin = pygame.transform.scale(skin, self.size)
         skin.set_colorkey(self.colorkey)
         return skin
+
+    def flip_skins(self,):
+        for index, skin in enumerate(self.skins):
+            self.skins[index] = pygame.transform.flip(skin, flip_x=True, flip_y=False)
 
 
 @log_class
@@ -89,7 +93,7 @@ class Fighter(epg.Sprite):
         health_bar_width = epg.WIDTH / 4 - 20
         health_bar_x = int(HEALTHBAR_POSITIONS[id] - health_bar_width / 2)
         self.health_bar = HealthBar(id=self.id, health=100, pos=(health_bar_x, 10), width=health_bar_width, show=show)
-        self.skin_index = 0
+        self.action_index = STAY
         self.animation_list = []
         self.change_animation_list(animation_pathes)
         self.stay()
@@ -156,28 +160,31 @@ class Fighter(epg.Sprite):
         #print(f"Apply game state\nDirection : {self.direction}, Self skins dir : {self.skins_dir}")
         self.move_to((x_pos, y_pos))
         self.health_bar.set_value(health)
+        self.image = self.orig_image = self.animation_list[action_index].get_next_skin()    #TODO написать get_next_skin
         self.actions[action]()
         if hide:
             self.hide()
         else:
             self.show()
     
-    def set_skin(self, skin_index):
+    def set_animation(self, action_index: int):
         if self.skins_dir != self.direction:
-            #print(f'Self skins dir changed from {self.skins_dir} to {self.direction}')
-            for index, skin in enumerate(self.animation_list):
-                self.animation_list[index] = pygame.transform.flip(skin, flip_x=True, flip_y=False)             #TODO посмотреть как работает flip и доделать разворот картинки
-            self.skins_dir = self.direction
-            #print(f"self Skins DIR: {self.skins_dir}")
-        self.image = self.orig_image = self.animation_list[skin_index]
-        self.skin_index = skin_index
+            self.skins_dir = self.direction 
+            self.animation_list[action_index].flip_skins()
+        #self.image = self.orig_image = self.animation_list[skin_index]
+        self.action_index = action_index
     
-    def change_animation_list(self, new_animation_list):
+    def change_character(self, character: dict):
         self.animation_list = []
-        self.skins_dir = False
-        for path in new_animation_list:
-            self.animation_list.append(self.load_img(img=path, colorkey=(43, 205, 27)))
-        self.set_skin(STAY)
+        char_path = os.path.join('photos', character.get('name'))
+        for action_name in [action.__name__ for action in self.actions]:
+            action_path = os.path.join(char_path, action_name)
+            animation = Animation(action_path, character.get(size))
+            self.animation_list.append(animation)
+        self.skins_dir = RIGHT
+        #for path in new_animation_list:
+        #    self.animation_list.append(self.load_img(img=path, colorkey=(43, 205, 27)))
+        #self.set_skin(STAY)
         
     def hide(self,):
         super().hide()

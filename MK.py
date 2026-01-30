@@ -54,11 +54,11 @@ PORT = 5555
 characters = {
     '1' : {
         'name' : 'grer',
-        'animation_list' : GRER_IMAGE_PATHES
+        'size' : (25, 25)
         },
     '2' : {
         'name' : 'artom',
-        'animation_list' : ARTOM_IMAGE_PATHES
+        'size' : (50, 50)
         },
 }
 
@@ -263,7 +263,7 @@ def initialize(char_id):
     button_names.reverse()
     main_menu.add_buttons(button_names)
     create_fighters({current_fighter_id: current_fighter_config}, show=False, current=True)
-    current_fighter.change_animation_list(characters[char_id]['animation_list'])
+    current_fighter.change_character(characters[char_id])
     pygame.display.set_caption(str(current_fighter.id))
     
 @to_log
@@ -434,7 +434,7 @@ while character_id != 'exit' or choice == 'выйти': # server.connected: TODO
     
     if choice == 'characters':
         character_id = character_menu.get_choice(update_buttons_enabled=False)
-        current_fighter.change_animation_list(characters[character_id]['animation_list'])
+        current_fighter.change_character(characters[character_id])
 
 
     else:
