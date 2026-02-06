@@ -1,3 +1,4 @@
+from sys import implementation
 import easy_pygame as epg
 from easy_pygame import UP, DOWN, LEFT, RIGHT
 import pygame as pg
@@ -16,9 +17,9 @@ SPRITE_WIDTH = 130
 SPRITE_HEIGHT = 130
 
 FPS = 30
-EARTH_IMAGE_PATH = 'photos/earth/earth.png'
-BACK_IMAGE_PATH = 'photos/background/back_1.png'
-WAITING_BACK_IMAGE_PATH = 'photos/background/back_2.png'
+EARTH_IMAGE_PATH = os.path.join('photos', 'earth', 'earth.png')
+BACK_IMAGE_PATH = os.path.join('photos', 'background', 'back_1.png')
+WAITING_BACK_IMAGE_PATH = os.path.join('photos', 'background', 'back_2.png')
 
 HEIGHT_HALF = int(SCREEN_HEIGHT/2)
 WIDTH_HALF = int(SCREEN_WIDTH/2)
@@ -28,25 +29,25 @@ GRAVITY = 2
 #EARTH = 716MAX
 
 PROJECT_DIR = os.getcwd()
-GRER_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/grer/stay_1.png'),
-                        os.path.join(PROJECT_DIR, 'photos/grer/go.png'),
-                        os.path.join(PROJECT_DIR, 'photos/grer/jump.png'),
-                        os.path.join(PROJECT_DIR, 'photos/grer/attack.png'),
-                        os.path.join(PROJECT_DIR, 'photos/grer/hitted.png'),
-                        os.path.join(PROJECT_DIR, 'photos/grer/dead.png'),
-                        )
+#GRER_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/grer/stay_1.png'),
+ #                       os.path.join(PROJECT_DIR, 'photos/grer/go.png'),
+  #                      os.path.join(PROJECT_DIR, 'photos/grer/jump.png'),
+   #                     os.path.join(PROJECT_DIR, 'photos/grer/attack.png'),
+    #                    os.path.join(PROJECT_DIR, 'photos/grer/hitted.png'),
+     #                   os.path.join(PROJECT_DIR, 'photos/grer/dead.png'),
+      #                  )
 
-ARTOM_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/artom/stay_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos/artom/go_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos/artom/jump_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos/artom/attack_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos/artom/hitted_artom.png'),
-                        os.path.join(PROJECT_DIR, 'photos/artom/dead_artom.png'),
-                        )
+#ARTOM_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/artom/stay_artom.png'),
+ #                       os.path.join(PROJECT_DIR, 'photos/artom/go_artom.png'),
+  #                      os.path.join(PROJECT_DIR, 'photos/artom/jump_artom.png'),
+   #                     os.path.join(PROJECT_DIR, 'photos/artom/attack_artom.png'),
+    #                    os.path.join(PROJECT_DIR, 'photos/artom/hitted_artom.png'),
+     #                   os.path.join(PROJECT_DIR, 'photos/artom/dead_artom.png'),
+      #                  )
 
-BUTTON_RELEASED_IMAGE_PATH = 'photos/button/released.jpeg'
-BUTTON_PRESSED_IMAGE_PATH = 'photos/button/pressed.jpeg'
-BUTTON_DISABLED_IMAGE_PATH = 'photos/button/disabled.jpeg'
+BUTTON_RELEASED_IMAGE_PATH = os.path.join('photos', 'button', 'released.jpeg')
+BUTTON_PRESSED_IMAGE_PATH = os.path.join('photos', 'button', 'pressed.jpeg')
+BUTTON_DISABLED_IMAGE_PATH = os.path.join('photos', 'button', 'disabled.jpeg')
 
 SERVER = 'localhost'
 PORT = 5555
@@ -283,7 +284,7 @@ def create_fighters(game_state, show=True, current=False):
     for id, fighter_config in game_state.items():
         print(f'fighter {id} created')
         dir, x_pos, y_pos, wigth, height, char_id = fighter_config
-        fighter = Fighter(animation_pathes=characters[char_id]['animation_list'],
+        fighter = Fighter(character=characters[char_id],
                          x_pos=x_pos,
                          y_pos=y_pos,
                          flip=dir,
