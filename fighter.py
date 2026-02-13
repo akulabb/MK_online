@@ -60,11 +60,14 @@ def log_class(class_to_log):
 
 
 class Animation:
-    def __init__(self, animation_path: str, size: tuple, colorkey=BEST_COLORKEY,):
+    def __init__(self, animation_path: str, size: tuple, skin_delay: int, colorkey=BEST_COLORKEY,):
         self.skins = []
         self.size = size
         self.colorkey = colorkey
         self.current_skin_index = 0
+        self.skin_delay = skin_delay
+        self.frame_counter = 0
+
         for path in os.listdir(animation_path):
             skin_path = os.path.join(animation_path, path)
             self.skins.append(self.load_skin(skin_path))
@@ -80,10 +83,18 @@ class Animation:
         for index, skin in enumerate(self.skins):
             self.skins[index] = pygame.transform.flip(skin, flip_x=True, flip_y=False)
     
-    def get_next_skin(self, ):
-        self.current_skin_index = (self.current_skin_index+1) % self.skins_num
-        skin = self.skins[self.current_skin_index]
-        return skin
+    def get_next_skin(self, first_skin=False):
+        if first_skin:
+            self.frame_counter = 0
+            self.current_skin_index = 0
+            return self.skins[0]
+        if self.frame_counter >= self.skin_delay:
+            self.current_skin_index = (self.current_skin_index+1) % self.skins_num
+            skin = self.skins[self.current_skin_index]
+            self.frame_counter = 0
+            return skin
+
+        self.frame_counter +=1
         
 
 #@log_class
@@ -168,7 +179,12 @@ class Fighter(epg.Sprite):
         #print(f"Apply game state\nDirection : {self.direction}, Self skins dir : {self.skins_dir}")
         self.move_to((x_pos, y_pos))
         self.health_bar.set_value(health)
-        self.image = self.orig_image = self.animation_list[self.action_index].get_next_skin()    #TODO написать get_next_skin
+
+        first_skin = (self.action_index != action)
+        next_skin = self.animation_list[self.action_index].get_next_skin(first_skin=first_skin)
+
+        if next_skin:
+            self.image = self.orig_image = next_skin 
         self.actions[action]()
         if hide:
             self.hide()
@@ -179,7 +195,7 @@ class Fighter(epg.Sprite):
         if self.skins_dir != self.direction:
             self.skins_dir = self.direction 
             self.animation_list[action_index].flip_skins()
-        self.image = self.orig_image = self.animation_list[action_index].get_next_skin()
+        #self.image = self.orig_image = self.animation_list[action_index].get_next_skin()
         self.action_index = action_index
     
     def change_character(self, character: dict):
@@ -187,7 +203,7 @@ class Fighter(epg.Sprite):
         char_path = os.path.join('photos', character.get('name'))
         for action_name in [action.__name__ for action in self.actions]:
             action_path = os.path.join(char_path, action_name)
-            animation = Animation(action_path, character.get('size'))
+            animation = Animation(action_path, character.get('size'), skin_delay=5)
             self.animation_list.append(animation)
         self.skins_dir = RIGHT
         #for path in new_animation_list:

@@ -6,6 +6,7 @@ import threading
 import time
 import json
 import inspect
+from dataclasses import dataclass
 
 ERROR = -1
 
@@ -87,10 +88,24 @@ def get_messaged_list(list_to_change: list, message: str) -> list:
     return list_to_change.insert(0, message)
 
 @log_class
+class Animation():
+    def __init__(self, delay=5, ):#animation_path: str,):
+        self.skins = []
+        self.delay = delay
+
+        #for path in os.listdir(animation_path):
+        #    skin_path = os.path.join(animation_path, path)
+        #    self.skins.append(self.load_skin(skin_path))
+                                                                    #TODO animation_path, animation_delay
+        self.skins_num = 4 #len(self.skins)
+
+
+
+@log_class
 class Character():
     def __init__(self, id: str, name: str,):
         self.id = id
-        self.name = name
+        self.name = name 
         self.max_health = 100
         self.speed = 10
         self.damage = 5
@@ -98,6 +113,13 @@ class Character():
         self.weapon_size = PLAYER_SIZE
         self.ATTACK_DELAY = 5
         self.HITTED_DELAY = 5
+        self.animation_stay = Animation()
+        self.animation_go = Animation()
+        self.animation_jump = Animation()
+        self.animation_attack = Animation()
+        self.animation_hitted = Animation()
+        self.animation_dead = Animation()
+        self.attack_duration = self.animation_attack.delay * self.animation_attack.skins_num 
         
 
 @log_class
@@ -121,6 +143,7 @@ class Player(threading.Thread):
         self.character = None
         self.rect = None
         self.y_pos = None
+        self.attack_duration = 0
    
     def add_extra_socket(self, extra_socket):
         self.extra_socket=extra_socket
@@ -144,7 +167,8 @@ class Player(threading.Thread):
                         )
     
     def attack(self,):
-        self.attack_delay = ATTACK_DELAY
+        self.attack_duration = self.character.attack_duration
+        self.attack_delay = ATTACK_DELAY+self.attack_duration
         attack_dist = self.character.weapon_size[0]
         if self.dir:
             hit_x = self.rect.center_x - attack_dist / 2
@@ -197,7 +221,13 @@ class Player(threading.Thread):
                 self.action = HITTED
                 self.hitted_delay -= 1
             else:
-                self.action = STAY
+                if self.attack_duration:
+                    self.action = ATTACK
+                    self.attack_duration -= 1
+                    if not self.attack_duration:
+                        self.attack_delay = ATTACK_DELAY
+                else:
+                    self.action = STAY
                 if options.get('move'):
                     self.action = GO
                 if options.get('jump') and not self.jumping:

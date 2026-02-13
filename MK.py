@@ -55,11 +55,11 @@ PORT = 5555
 characters = {
     '1' : {
         'name' : 'grer',
-        'size' : (25, 25)
+        'size' : (100, 100)
         },
     '2' : {
         'name' : 'artom',
-        'size' : (50, 50)
+        'size' : (150, 150)
         },
 }
 
