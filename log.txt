@@ -1,0 +1,985 @@
+2026-02-20 17:40:55,167, INFO, Сервер запущен, <module>, 62, server.py
+2026-02-20 17:40:55,172, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,173, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,174, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,174, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,175, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,176, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,177, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,182, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,183, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,184, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,186, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,188, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,190, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,191, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:40:55,196, INFO, Говорит ринг на 2: Referee started!, say, 417, server.py
+2026-02-20 17:40:55,212, INFO, Говорит ринг на 3: Referee started!, say, 417, server.py
+2026-02-20 17:40:55,217, INFO, Говорит ринг на 4: Referee started!, say, 417, server.py
+2026-02-20 17:40:55,217, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 17:40:55,217, INFO, Говорит ринг на 3: Waiting for players, say, 417, server.py
+2026-02-20 17:40:55,226, INFO, Говорит ринг на 4: Waiting for players, say, 417, server.py
+2026-02-20 17:41:07,588, INFO, Новое подключение с адресом : ('127.0.0.1', 41142), тип подключения main, <module>, 573, server.py
+2026-02-20 17:41:07,594, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:41:07,597, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 17:41:07,599, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 17:41:07,606, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 17:41:07,614, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 17:41:07,616, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 17:41:07,616, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 17:41:07,622, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 17:41:07,623, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 17:41:10,373, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 17:41:10,381, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 17:41:10,396, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:41:10,397, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 17:41:10,398, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 17:41:10,406, INFO, Новое подключение с адресом : ('127.0.0.1', 41146), тип подключения 0, <module>, 573, server.py
+2026-02-20 17:41:10,409, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 17:41:10,412, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 17:41:10,654, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 17:41:10,661, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:41:10,677, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 17:41:10,681, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 17:41:10,691, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 17:41:13,493, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 17:41:13,524, INFO, Player 0: Неправильный номер ринга: -1, клиент будет отключен, say, 153, server.py
+2026-02-20 17:41:13,526, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 17:41:13,528, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 17:41:13,531, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 17:42:37,369, INFO, Новое подключение с адресом : ('127.0.0.1', 35562), тип подключения main, <module>, 573, server.py
+2026-02-20 17:42:37,388, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:42:37,397, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 17:42:37,406, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 17:42:37,415, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 17:42:37,421, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 17:42:37,423, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 17:42:37,424, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 17:42:37,427, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 17:42:37,428, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 17:42:58,003, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 17:42:58,005, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 17:42:58,009, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:42:58,011, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 17:42:58,012, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 17:42:58,018, INFO, Новое подключение с адресом : ('127.0.0.1', 48972), тип подключения 0, <module>, 573, server.py
+2026-02-20 17:42:58,019, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 17:42:58,020, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 17:42:58,264, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 17:42:58,267, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:42:58,274, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 17:42:58,275, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 17:42:58,278, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 17:43:00,701, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 17:43:00,702, INFO, Player 0: Неправильный номер ринга: -1, клиент будет отключен, say, 153, server.py
+2026-02-20 17:43:00,713, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 17:43:00,722, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 17:43:00,728, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 17:44:04,860, INFO, Новое подключение с адресом : ('127.0.0.1', 45572), тип подключения main, <module>, 573, server.py
+2026-02-20 17:44:04,902, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:44:04,918, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 17:44:04,952, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 17:44:05,154, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 17:44:05,155, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 17:44:05,156, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 17:44:05,166, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 17:44:05,167, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 17:44:05,170, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 17:44:07,262, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 17:44:07,264, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 17:44:07,266, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:44:07,269, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 17:44:07,276, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 17:44:07,279, INFO, Новое подключение с адресом : ('127.0.0.1', 45586), тип подключения 0, <module>, 573, server.py
+2026-02-20 17:44:07,282, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 17:44:07,285, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 17:44:07,533, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 17:44:07,534, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:44:07,543, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 17:44:07,545, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 17:44:07,549, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 17:44:08,103, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 17:44:08,108, INFO, Player 0: Неправильный номер ринга: -1, клиент будет отключен, say, 153, server.py
+2026-02-20 17:44:08,122, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 17:44:08,134, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 17:44:08,139, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 17:46:48,900, INFO, Новое подключение с адресом : ('127.0.0.1', 52168), тип подключения main, <module>, 573, server.py
+2026-02-20 17:46:48,989, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:46:49,007, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 17:46:49,040, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 17:46:49,051, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 17:46:49,052, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 17:46:49,057, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 17:46:49,058, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 17:46:49,058, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 17:46:49,061, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 17:46:55,059, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 17:46:55,061, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 17:46:55,072, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:46:55,075, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 17:46:55,077, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 17:46:55,078, INFO, Новое подключение с адресом : ('127.0.0.1', 45556), тип подключения 0, <module>, 573, server.py
+2026-02-20 17:46:55,080, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 17:46:55,081, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 17:46:55,331, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 17:46:55,347, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:46:55,372, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 17:46:55,386, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 17:46:55,390, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 17:46:56,481, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 17:46:56,510, INFO, Player 0: Неправильный номер ринга: -1, клиент будет отключен, say, 153, server.py
+2026-02-20 17:46:56,547, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 17:46:56,578, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 17:46:56,579, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 17:48:41,653, INFO, Новое подключение с адресом : ('127.0.0.1', 55180), тип подключения main, <module>, 573, server.py
+2026-02-20 17:48:41,755, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:48:41,776, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 17:48:41,819, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 17:48:41,848, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 17:48:41,854, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 17:48:41,856, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 17:48:41,859, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 17:48:41,862, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 17:48:41,865, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 17:48:44,003, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 17:48:44,004, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 17:48:44,007, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:48:44,009, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 17:48:44,011, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 17:48:44,011, INFO, Новое подключение с адресом : ('127.0.0.1', 48380), тип подключения 0, <module>, 573, server.py
+2026-02-20 17:48:44,016, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 17:48:44,017, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 17:48:44,270, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 17:48:44,276, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:48:44,288, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 17:48:44,291, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 17:48:44,295, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 17:48:44,896, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 17:48:44,937, INFO, Player 0: Неправильный номер ринга: -1, клиент будет отключен, say, 153, server.py
+2026-02-20 17:48:44,967, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 17:48:44,995, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 17:48:44,996, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 17:49:08,064, INFO, Новое подключение с адресом : ('127.0.0.1', 52180), тип подключения main, <module>, 573, server.py
+2026-02-20 17:49:08,146, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 17:49:08,165, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 17:49:08,182, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 17:49:08,186, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 17:49:08,188, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 17:49:08,192, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 17:49:08,193, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 17:49:08,196, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 17:49:08,198, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 17:49:10,424, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 17:49:10,425, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 17:49:10,432, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:49:10,438, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 17:49:10,439, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 17:49:10,443, INFO, Новое подключение с адресом : ('127.0.0.1', 52190), тип подключения 0, <module>, 573, server.py
+2026-02-20 17:49:10,445, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 17:49:10,446, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 17:49:10,694, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 17:49:10,697, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 17:49:10,708, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 17:49:10,713, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 17:49:10,715, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 17:49:13,589, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 17:49:13,600, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-19, say, 417, server.py
+2026-02-20 17:49:13,606, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 17:49:25,144, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:25,988, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:26,821, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:27,688, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:28,539, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:29,378, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:30,222, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:31,055, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:31,892, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:32,740, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:33,579, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:49:34,420, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:52:18,773, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:52:21,539, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 17:52:34,561, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 17:52:34,568, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 17:52:34,571, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 17:52:34,590, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 17:52:34,596, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 17:52:34,601, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:03:41,244, INFO, Новое подключение с адресом : ('127.0.0.1', 46720), тип подключения main, <module>, 573, server.py
+2026-02-20 18:03:41,382, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:03:41,678, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:03:41,696, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:03:41,703, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:03:41,707, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:03:41,708, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:03:41,709, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:03:41,713, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:03:41,715, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:03:44,219, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:03:44,220, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:03:44,231, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:03:44,241, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:03:44,242, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:03:44,249, INFO, Новое подключение с адресом : ('127.0.0.1', 38380), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:03:44,255, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:03:44,262, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:03:44,502, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:03:44,505, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:03:44,514, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:03:44,526, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:03:44,542, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:03:49,845, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:03:49,915, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-22, say, 417, server.py
+2026-02-20 18:03:49,977, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:05:10,671, INFO, Сервер запущен, <module>, 62, server.py
+2026-02-20 18:05:10,675, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,675, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,676, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,676, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,677, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,678, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,679, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,683, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,684, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,685, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,685, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,686, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,686, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,686, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:10,689, INFO, Говорит ринг на 2: Referee started!, say, 417, server.py
+2026-02-20 18:05:10,691, INFO, Говорит ринг на 3: Referee started!, say, 417, server.py
+2026-02-20 18:05:10,691, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 18:05:10,694, INFO, Говорит ринг на 3: Waiting for players, say, 417, server.py
+2026-02-20 18:05:10,694, INFO, Говорит ринг на 4: Referee started!, say, 417, server.py
+2026-02-20 18:05:10,703, INFO, Говорит ринг на 4: Waiting for players, say, 417, server.py
+2026-02-20 18:05:18,329, INFO, Новое подключение с адресом : ('127.0.0.1', 48864), тип подключения main, <module>, 573, server.py
+2026-02-20 18:05:18,339, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:18,343, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:05:18,346, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:05:18,350, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:05:18,351, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:05:18,352, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:05:18,355, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:05:18,356, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:05:18,360, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:05:24,685, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:05:24,685, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:05:24,687, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:05:24,689, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:05:24,692, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:05:24,705, INFO, Новое подключение с адресом : ('127.0.0.1', 53656), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:05:24,707, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:05:24,710, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:05:24,944, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:05:24,948, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:05:24,978, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:05:24,982, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:05:24,991, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:05:26,216, INFO, Новое подключение с адресом : ('127.0.0.1', 53668), тип подключения main, <module>, 573, server.py
+2026-02-20 18:05:26,225, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:05:26,230, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:05:26,241, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:05:26,244, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:05:26,246, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:05:26,250, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:05:26,252, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:05:26,255, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:05:26,256, INFO, Player 1: Игрок создан, say, 153, server.py
+2026-02-20 18:05:30,004, INFO, Player 1: 1, say, 153, server.py
+2026-02-20 18:05:30,013, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:05:30,034, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:05:30,047, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:05:30,050, INFO, Новое подключение с адресом : ('127.0.0.1', 53676), тип подключения 1, <module>, 573, server.py
+2026-02-20 18:05:30,053, INFO, Player 1: start waiting for second socket, say, 153, server.py
+2026-02-20 18:05:30,060, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:05:30,077, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:05:30,312, INFO, Player 1: start state: (1, (True, 640, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:05:30,344, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:05:30,361, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:05:30,391, INFO, Player 1: watch_rings запускается, say, 153, server.py
+2026-02-20 18:05:30,429, INFO, Player 1: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:05:40,777, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:05:40,784, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-4, say, 417, server.py
+2026-02-20 18:05:40,791, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:05:43,204, INFO, Player 1: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:05:43,222, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-7, say, 417, server.py
+2026-02-20 18:05:43,228, INFO, Player 1: start main cycle., say, 153, server.py
+2026-02-20 18:05:43,407, INFO, Говорит ринг на 2: Game started!, say, 417, server.py
+2026-02-20 18:05:53,313, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:05:54,169, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:05:55,007, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:06:13,442, INFO, ** __repr__ **, sub_func, 75, server.py
+2026-02-20 18:06:13,445, INFO, ** is_alive **, sub_func, 75, server.py
+2026-02-20 18:06:13,451, INFO, ** _wait_for_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:06:13,456, INFO, Player 1: GAME OVER, say, 153, server.py
+2026-02-20 18:06:13,461, INFO, ** __repr__ **, sub_func, 75, server.py
+2026-02-20 18:06:13,463, INFO, ** is_alive **, sub_func, 75, server.py
+2026-02-20 18:06:13,465, INFO, ** _wait_for_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:06:13,467, INFO, Говорит ринг на 2: Ожидание покидания игроками ринга. На ринге остались: [<Player(Thread-4, started daemon 129208598644416)>, <Player(Thread-7, started daemon 129208378451648)>], say, 417, server.py
+2026-02-20 18:06:13,465, INFO, Player 0: GAME OVER, say, 153, server.py
+2026-02-20 18:06:13,486, INFO, Player 1: sending finish, say, 153, server.py
+2026-02-20 18:06:13,487, INFO, Player 1: recieving finish confirmation, say, 153, server.py
+2026-02-20 18:06:13,493, INFO, Player 1: confirm: end, say, 153, server.py
+2026-02-20 18:06:13,498, INFO, Player 0: sending finish, say, 153, server.py
+2026-02-20 18:06:13,506, INFO, Говорит ринг на 2: удален игрок 1 из players, say, 417, server.py
+2026-02-20 18:06:13,506, INFO, Player 0: recieving finish confirmation, say, 153, server.py
+2026-02-20 18:06:13,509, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:06:13,517, INFO, Player 0: confirm: end, say, 153, server.py
+2026-02-20 18:06:13,523, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:06:13,523, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:06:13,524, INFO, Player 1: watch_rings запускается, say, 153, server.py
+2026-02-20 18:06:13,525, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:06:13,526, INFO, Player 1: Rings state: [True, False, False], say, 153, server.py
+2026-02-20 18:06:13,528, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:06:13,542, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:06:13,543, INFO, Player 0: Rings state: [True, False, False], say, 153, server.py
+2026-02-20 18:06:14,468, INFO, Говорит ринг на 2: Game over!, say, 417, server.py
+2026-02-20 18:06:14,470, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 18:06:14,537, INFO, Player 1: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:06:14,556, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:06:56,606, INFO, Player 1: Неправильный номер ринга: и, клиент будет отключен, say, 153, server.py
+2026-02-20 18:06:56,608, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:06:56,617, INFO, Говорит ринг на 2: удален игрок 1 из winners, say, 417, server.py
+2026-02-20 18:06:56,620, DEBUG, игрок закончился с id : 1, remove_player, 525, server.py
+2026-02-20 18:06:56,623, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:07:05,312, INFO, Player 0: Неправильный номер ринга: и, клиент будет отключен, say, 153, server.py
+2026-02-20 18:07:05,313, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:07:05,316, INFO, Говорит ринг на 2: удален игрок 0 из winners, say, 417, server.py
+2026-02-20 18:07:05,318, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:07:05,331, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:07:12,554, INFO, Сервер запущен, <module>, 62, server.py
+2026-02-20 18:07:12,555, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,557, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,559, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,562, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,563, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,564, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,565, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,566, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,567, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,568, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,569, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,569, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,570, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,570, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:12,572, INFO, Говорит ринг на 2: Referee started!, say, 417, server.py
+2026-02-20 18:07:12,576, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 18:07:12,576, INFO, Говорит ринг на 4: Referee started!, say, 417, server.py
+2026-02-20 18:07:12,574, INFO, Говорит ринг на 3: Referee started!, say, 417, server.py
+2026-02-20 18:07:12,580, INFO, Говорит ринг на 4: Waiting for players, say, 417, server.py
+2026-02-20 18:07:12,581, INFO, Говорит ринг на 3: Waiting for players, say, 417, server.py
+2026-02-20 18:07:18,344, INFO, Новое подключение с адресом : ('127.0.0.1', 58486), тип подключения main, <module>, 573, server.py
+2026-02-20 18:07:18,351, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:18,356, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:07:18,359, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:07:18,371, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:07:18,372, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:07:18,373, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:07:18,375, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:07:18,376, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:07:18,378, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:07:21,222, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:07:21,228, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:07:21,237, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:07:21,245, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:07:21,272, INFO, Новое подключение с адресом : ('127.0.0.1', 58494), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:07:21,276, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:07:21,428, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:07:21,455, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:07:21,702, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:07:21,705, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:07:21,723, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:07:21,724, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:07:21,742, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:07:22,941, INFO, Новое подключение с адресом : ('127.0.0.1', 38938), тип подключения main, <module>, 573, server.py
+2026-02-20 18:07:22,949, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:07:22,955, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:07:22,959, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:07:22,962, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:07:22,963, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:07:22,969, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:07:22,973, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:07:22,974, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:07:22,982, INFO, Player 1: Игрок создан, say, 153, server.py
+2026-02-20 18:07:44,074, INFO, Player 1: 1, say, 153, server.py
+2026-02-20 18:07:44,082, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:07:44,085, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:07:44,088, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:07:44,099, INFO, Player 1: start waiting for second socket, say, 153, server.py
+2026-02-20 18:07:44,122, INFO, Новое подключение с адресом : ('127.0.0.1', 42248), тип подключения 1, <module>, 573, server.py
+2026-02-20 18:07:44,128, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:07:44,129, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:07:44,375, INFO, Player 1: start state: (1, (True, 640, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:07:44,379, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:07:44,388, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:07:44,389, INFO, Player 1: watch_rings запускается, say, 153, server.py
+2026-02-20 18:07:44,408, INFO, Player 1: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:07:51,933, INFO, Player 1: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:07:51,936, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-7, say, 417, server.py
+2026-02-20 18:07:51,937, INFO, Player 1: start main cycle., say, 153, server.py
+2026-02-20 18:07:53,932, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:07:53,935, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-4, say, 417, server.py
+2026-02-20 18:07:53,940, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:07:54,054, INFO, Говорит ринг на 2: Game started!, say, 417, server.py
+2026-02-20 18:07:59,724, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:07:59,740, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 18:07:59,747, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:07:59,776, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:07:59,816, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:07:59,823, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:08:01,102, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:08:01,177, ERROR, Потерянно соеденение с : 1 игрок отключился, run, 309, server.py
+2026-02-20 18:08:01,395, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:08:01,632, INFO, Говорит ринг на 2: удален игрок 1 из players, say, 417, server.py
+2026-02-20 18:08:01,665, DEBUG, игрок закончился с id : 1, remove_player, 525, server.py
+2026-02-20 18:08:01,763, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:08:08,874, INFO, Сервер запущен, <module>, 62, server.py
+2026-02-20 18:08:08,876, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,877, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,880, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,881, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,882, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,883, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,883, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,884, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,885, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,886, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,887, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,888, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,889, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,890, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:08,891, INFO, Говорит ринг на 2: Referee started!, say, 417, server.py
+2026-02-20 18:08:08,892, INFO, Говорит ринг на 3: Referee started!, say, 417, server.py
+2026-02-20 18:08:08,894, INFO, Говорит ринг на 4: Referee started!, say, 417, server.py
+2026-02-20 18:08:08,895, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 18:08:08,895, INFO, Говорит ринг на 3: Waiting for players, say, 417, server.py
+2026-02-20 18:08:08,896, INFO, Говорит ринг на 4: Waiting for players, say, 417, server.py
+2026-02-20 18:08:24,283, INFO, Новое подключение с адресом : ('127.0.0.1', 57442), тип подключения main, <module>, 573, server.py
+2026-02-20 18:08:24,291, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:08:24,294, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:08:24,297, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:08:24,298, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:08:24,302, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:08:24,305, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:08:24,314, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:08:24,333, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:08:24,353, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:08:26,337, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:08:26,339, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:08:26,340, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:08:26,343, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:08:26,346, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:08:26,351, INFO, Новое подключение с адресом : ('127.0.0.1', 57454), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:08:26,353, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:08:26,354, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:08:26,597, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:08:26,626, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:08:26,637, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:08:26,638, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:08:26,641, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:08:29,761, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:08:29,764, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-4, say, 417, server.py
+2026-02-20 18:08:29,768, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:08:38,099, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:08:38,930, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:08:39,761, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:08:40,597, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:08:58,313, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:08:59,154, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:00,073, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:01,547, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:02,799, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:03,634, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:05,202, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:06,103, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:07,211, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:08,076, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:09,214, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:10,482, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:11,876, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:13,375, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:14,784, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:09:20,232, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:09:20,233, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 18:09:20,235, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:09:20,237, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:09:20,246, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:09:20,247, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:09:52,360, INFO, Новое подключение с адресом : ('127.0.0.1', 38648), тип подключения main, <module>, 573, server.py
+2026-02-20 18:09:52,362, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:09:52,389, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:09:52,394, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:09:52,396, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:09:52,397, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:09:52,398, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:09:52,399, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:09:52,400, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:09:52,402, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:09:58,880, INFO, Новое подключение с адресом : ('127.0.0.1', 38662), тип подключения main, <module>, 573, server.py
+2026-02-20 18:09:58,886, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:09:58,904, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:09:58,947, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:09:58,948, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:09:58,997, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:09:59,015, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:09:59,028, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:09:59,029, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:09:59,031, INFO, Player 1: Игрок создан, say, 153, server.py
+2026-02-20 18:10:01,327, INFO, Player 1: 1, say, 153, server.py
+2026-02-20 18:10:01,349, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:10:01,359, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:10:01,368, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:10:01,381, INFO, Player 1: start waiting for second socket, say, 153, server.py
+2026-02-20 18:10:01,383, INFO, Новое подключение с адресом : ('127.0.0.1', 38664), тип подключения 1, <module>, 573, server.py
+2026-02-20 18:10:01,406, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:10:01,411, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:10:01,650, INFO, Player 1: start state: (1, (True, 640, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:10:01,655, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:10:01,696, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:10:01,699, INFO, Player 1: watch_rings запускается, say, 153, server.py
+2026-02-20 18:10:01,702, INFO, Player 1: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:10:05,030, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:10:05,033, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:10:05,037, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:10:05,041, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:10:05,048, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:10:05,055, INFO, Новое подключение с адресом : ('127.0.0.1', 34146), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:10:05,062, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:10:05,065, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:10:05,306, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:10:05,308, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:10:05,331, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:10:05,343, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:10:05,348, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:10:07,498, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:10:07,512, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-7, say, 417, server.py
+2026-02-20 18:10:07,514, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:10:09,008, INFO, Player 1: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:10:09,011, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-9, say, 417, server.py
+2026-02-20 18:10:09,022, INFO, Player 1: start main cycle., say, 153, server.py
+2026-02-20 18:10:09,244, INFO, Говорит ринг на 2: Game started!, say, 417, server.py
+2026-02-20 18:10:39,263, INFO, ** __repr__ **, sub_func, 75, server.py
+2026-02-20 18:10:39,265, INFO, ** is_alive **, sub_func, 75, server.py
+2026-02-20 18:10:39,269, INFO, ** _wait_for_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:10:39,269, INFO, Player 0: GAME OVER, say, 153, server.py
+2026-02-20 18:10:39,276, INFO, Player 1: GAME OVER, say, 153, server.py
+2026-02-20 18:10:39,283, INFO, ** __repr__ **, sub_func, 75, server.py
+2026-02-20 18:10:39,289, INFO, ** is_alive **, sub_func, 75, server.py
+2026-02-20 18:10:39,290, INFO, ** _wait_for_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:10:39,291, INFO, Говорит ринг на 2: Ожидание покидания игроками ринга. На ринге остались: [<Player(Thread-7, started daemon 140330050160320)>, <Player(Thread-9, started daemon 140330041767616)>], say, 417, server.py
+2026-02-20 18:10:39,303, INFO, Player 0: sending finish, say, 153, server.py
+2026-02-20 18:10:39,309, INFO, Player 1: sending finish, say, 153, server.py
+2026-02-20 18:10:39,317, INFO, Player 0: recieving finish confirmation, say, 153, server.py
+2026-02-20 18:10:39,337, INFO, Player 1: recieving finish confirmation, say, 153, server.py
+2026-02-20 18:10:39,342, INFO, Player 0: confirm: end, say, 153, server.py
+2026-02-20 18:10:39,344, INFO, Player 1: confirm: end, say, 153, server.py
+2026-02-20 18:10:39,345, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:10:39,345, INFO, Говорит ринг на 2: удален игрок 1 из players, say, 417, server.py
+2026-02-20 18:10:39,347, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:10:39,346, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:10:39,351, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:10:39,350, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:10:39,392, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:10:39,401, INFO, Player 1: watch_rings запускается, say, 153, server.py
+2026-02-20 18:10:39,412, INFO, Player 0: Rings state: [True, False, False], say, 153, server.py
+2026-02-20 18:10:39,416, INFO, Player 1: Rings state: [True, False, False], say, 153, server.py
+2026-02-20 18:10:40,294, INFO, Говорит ринг на 2: Game over!, say, 417, server.py
+2026-02-20 18:10:40,296, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 18:10:40,364, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:10:40,365, INFO, Player 1: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:10:47,578, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:10:47,601, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-7, say, 417, server.py
+2026-02-20 18:10:47,614, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:10:49,423, INFO, Player 1: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:10:49,429, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-9, say, 417, server.py
+2026-02-20 18:10:49,432, INFO, Player 1: start main cycle., say, 153, server.py
+2026-02-20 18:10:49,557, INFO, Говорит ринг на 2: Game started!, say, 417, server.py
+2026-02-20 18:11:19,630, INFO, ** __repr__ **, sub_func, 75, server.py
+2026-02-20 18:11:19,636, INFO, Player 1: GAME OVER, say, 153, server.py
+2026-02-20 18:11:19,676, INFO, Player 0: GAME OVER, say, 153, server.py
+2026-02-20 18:11:19,680, INFO, ** is_alive **, sub_func, 75, server.py
+2026-02-20 18:11:19,688, INFO, Player 1: sending finish, say, 153, server.py
+2026-02-20 18:11:19,690, INFO, ** _wait_for_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:11:19,715, INFO, Player 0: sending finish, say, 153, server.py
+2026-02-20 18:11:19,716, INFO, Player 1: recieving finish confirmation, say, 153, server.py
+2026-02-20 18:11:19,731, INFO, ** __repr__ **, sub_func, 75, server.py
+2026-02-20 18:11:19,751, INFO, Player 0: recieving finish confirmation, say, 153, server.py
+2026-02-20 18:11:19,757, INFO, Player 1: confirm: end, say, 153, server.py
+2026-02-20 18:11:19,759, INFO, ** is_alive **, sub_func, 75, server.py
+2026-02-20 18:11:19,772, INFO, ** _wait_for_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:11:19,769, INFO, Говорит ринг на 2: удален игрок 1 из players, say, 417, server.py
+2026-02-20 18:11:19,779, INFO, Говорит ринг на 2: Ожидание покидания игроками ринга. На ринге остались: [<Player(Thread-7, started daemon 140330050160320)>, <Player(Thread-9, started daemon 140330041767616)>], say, 417, server.py
+2026-02-20 18:11:19,766, INFO, Player 0: confirm: end, say, 153, server.py
+2026-02-20 18:11:19,789, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:11:19,800, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:11:19,810, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:11:19,814, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:11:19,817, INFO, Player 1: watch_rings запускается, say, 153, server.py
+2026-02-20 18:11:19,819, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:11:19,825, INFO, Player 1: Rings state: [True, False, False], say, 153, server.py
+2026-02-20 18:11:19,826, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:11:19,828, INFO, Player 0: Rings state: [True, False, False], say, 153, server.py
+2026-02-20 18:11:20,794, INFO, Говорит ринг на 2: Game over!, say, 417, server.py
+2026-02-20 18:11:20,797, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 18:11:20,831, INFO, Player 1: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:11:20,832, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:11:28,890, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:11:28,923, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-7, say, 417, server.py
+2026-02-20 18:11:28,934, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:11:31,104, INFO, Player 1: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:11:31,120, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-9, say, 417, server.py
+2026-02-20 18:11:31,132, INFO, Player 1: start main cycle., say, 153, server.py
+2026-02-20 18:11:31,353, INFO, Говорит ринг на 2: Game started!, say, 417, server.py
+2026-02-20 18:11:50,722, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:11:50,734, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 18:11:50,740, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:11:50,763, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:11:50,767, INFO, Говорит ринг на 2: удален игрок 0 из winners, say, 417, server.py
+2026-02-20 18:11:50,776, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:11:50,790, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:11:50,906, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:11:50,908, ERROR, Потерянно соеденение с : 1 игрок отключился, run, 309, server.py
+2026-02-20 18:11:50,910, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:11:50,921, INFO, Говорит ринг на 2: удален игрок 1 из players, say, 417, server.py
+2026-02-20 18:11:50,924, INFO, Говорит ринг на 2: удален игрок 1 из winners, say, 417, server.py
+2026-02-20 18:11:50,929, DEBUG, игрок закончился с id : 1, remove_player, 525, server.py
+2026-02-20 18:11:50,930, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:24:07,561, INFO, Новое подключение с адресом : ('127.0.0.1', 36368), тип подключения main, <module>, 573, server.py
+2026-02-20 18:24:07,694, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:07,858, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:24:07,904, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:24:07,915, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:24:07,919, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:24:07,922, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:24:07,933, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:24:07,943, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:24:07,954, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:24:09,971, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:24:09,972, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:24:09,985, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:24:09,992, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:24:09,993, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:24:09,995, INFO, Новое подключение с адресом : ('127.0.0.1', 36376), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:24:10,002, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:24:10,003, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:24:10,246, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:24:10,252, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:24:10,261, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:24:10,262, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:24:10,269, INFO, Player 0: Rings state: [True, False, False], say, 153, server.py
+2026-02-20 18:24:14,936, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:24:14,949, INFO, Player 0: Неправильный номер ринга: -1, клиент будет отключен, say, 153, server.py
+2026-02-20 18:24:14,953, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:24:14,966, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:24:14,975, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:24:20,920, INFO, Сервер запущен, <module>, 62, server.py
+2026-02-20 18:24:20,924, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,928, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,929, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,930, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,931, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,932, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,932, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,933, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,933, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,934, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,935, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,936, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,936, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,937, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:20,944, INFO, Говорит ринг на 2: Referee started!, say, 417, server.py
+2026-02-20 18:24:20,950, INFO, Говорит ринг на 4: Referee started!, say, 417, server.py
+2026-02-20 18:24:20,949, INFO, Говорит ринг на 3: Referee started!, say, 417, server.py
+2026-02-20 18:24:20,951, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 18:24:20,953, INFO, Говорит ринг на 4: Waiting for players, say, 417, server.py
+2026-02-20 18:24:20,958, INFO, Говорит ринг на 3: Waiting for players, say, 417, server.py
+2026-02-20 18:24:25,615, INFO, Новое подключение с адресом : ('127.0.0.1', 33544), тип подключения main, <module>, 573, server.py
+2026-02-20 18:24:25,621, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:24:25,624, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:24:25,632, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:24:25,633, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:24:25,635, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:24:25,636, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:24:25,645, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:24:25,651, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:24:25,652, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:24:27,334, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:24:27,335, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:24:27,338, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:24:27,343, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:24:27,344, INFO, Новое подключение с адресом : ('127.0.0.1', 33556), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:24:27,349, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:24:27,351, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:24:27,354, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:24:27,603, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:24:27,604, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:24:27,609, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:24:27,610, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:24:27,613, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:24:29,010, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:24:29,016, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-4, say, 417, server.py
+2026-02-20 18:24:29,022, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:24:33,168, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:24:33,169, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 18:24:33,170, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:24:33,174, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:24:33,175, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:24:33,176, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:25:01,758, INFO, Новое подключение с адресом : ('127.0.0.1', 33356), тип подключения main, <module>, 573, server.py
+2026-02-20 18:25:01,769, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:01,782, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:25:01,814, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:25:01,817, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:25:01,826, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:25:01,831, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:25:01,836, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:25:01,841, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:25:01,842, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:25:03,383, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:25:03,393, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:25:03,400, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:25:03,424, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:25:03,437, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:25:03,436, INFO, Новое подключение с адресом : ('127.0.0.1', 33762), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:25:03,454, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:25:03,462, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:25:03,701, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:25:03,706, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:25:03,714, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:25:03,716, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:25:03,725, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:25:06,215, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:25:06,228, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-7, say, 417, server.py
+2026-02-20 18:25:06,231, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:25:15,295, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:25:15,296, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 18:25:15,298, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:25:15,301, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:25:15,302, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:25:15,312, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:25:18,396, INFO, Сервер запущен, <module>, 62, server.py
+2026-02-20 18:25:18,398, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,399, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,401, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,402, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,403, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,411, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,413, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,415, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,416, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,419, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,420, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,421, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,422, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,424, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:18,425, INFO, Говорит ринг на 2: Referee started!, say, 417, server.py
+2026-02-20 18:25:18,426, INFO, Говорит ринг на 3: Referee started!, say, 417, server.py
+2026-02-20 18:25:18,427, INFO, Говорит ринг на 4: Referee started!, say, 417, server.py
+2026-02-20 18:25:18,427, INFO, Говорит ринг на 3: Waiting for players, say, 417, server.py
+2026-02-20 18:25:18,426, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 18:25:18,428, INFO, Говорит ринг на 4: Waiting for players, say, 417, server.py
+2026-02-20 18:25:22,894, INFO, Новое подключение с адресом : ('127.0.0.1', 44776), тип подключения main, <module>, 573, server.py
+2026-02-20 18:25:22,901, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:25:22,911, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:25:22,933, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:25:22,943, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:25:22,948, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:25:22,950, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:25:22,950, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:25:22,951, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:25:22,967, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:25:24,287, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:25:24,292, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:25:24,294, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:25:24,298, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:25:24,299, INFO, Новое подключение с адресом : ('127.0.0.1', 44778), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:25:24,301, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:25:24,302, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:25:24,310, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:25:24,559, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:25:24,561, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:25:24,565, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:25:24,573, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:25:24,577, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:25:25,905, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:25:25,908, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-4, say, 417, server.py
+2026-02-20 18:25:25,912, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:25:44,400, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:25:44,407, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 18:25:44,408, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:25:44,411, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:25:44,412, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:25:44,413, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:30:02,380, INFO, Новое подключение с адресом : ('127.0.0.1', 33446), тип подключения main, <module>, 573, server.py
+2026-02-20 18:30:02,410, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:30:02,434, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:30:02,445, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:30:02,451, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:30:02,452, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:30:02,452, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:30:02,454, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:30:02,455, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:30:02,462, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:30:03,932, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:30:03,933, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:30:03,945, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:30:03,949, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:30:03,953, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:30:03,954, INFO, Новое подключение с адресом : ('127.0.0.1', 33450), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:30:03,956, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:30:03,957, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:30:04,205, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:30:04,211, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:30:04,225, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:30:04,230, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:30:04,235, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:30:05,599, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:30:05,613, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-7, say, 417, server.py
+2026-02-20 18:30:05,614, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:30:06,516, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:30:06,517, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 18:30:06,520, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:30:06,523, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:30:06,524, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:30:06,531, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:36:12,611, INFO, Новое подключение с адресом : ('127.0.0.1', 34884), тип подключения main, <module>, 573, server.py
+2026-02-20 18:36:12,649, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:12,662, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:36:12,732, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:36:12,735, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:36:12,736, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:36:12,742, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:36:12,744, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:36:12,747, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:36:12,751, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:36:14,214, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:36:14,237, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:36:14,275, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:36:14,286, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:36:14,305, INFO, Новое подключение с адресом : ('127.0.0.1', 34892), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:36:14,307, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:36:14,316, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:36:14,340, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:36:14,569, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:36:14,574, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:36:14,624, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:36:14,625, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:36:14,634, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:36:16,848, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:36:16,921, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-10, say, 417, server.py
+2026-02-20 18:36:16,934, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:36:20,609, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:36:20,622, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 18:36:20,626, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:36:20,636, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:36:20,642, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:36:20,644, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:36:23,859, INFO, Сервер запущен, <module>, 62, server.py
+2026-02-20 18:36:23,864, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,866, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,866, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,867, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,868, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,869, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,870, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,871, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,873, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,874, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,875, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,876, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,876, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,877, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:23,882, INFO, Говорит ринг на 2: Referee started!, say, 417, server.py
+2026-02-20 18:36:23,884, INFO, Говорит ринг на 3: Referee started!, say, 417, server.py
+2026-02-20 18:36:23,884, INFO, Говорит ринг на 4: Referee started!, say, 417, server.py
+2026-02-20 18:36:23,885, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 18:36:23,886, INFO, Говорит ринг на 3: Waiting for players, say, 417, server.py
+2026-02-20 18:36:23,887, INFO, Говорит ринг на 4: Waiting for players, say, 417, server.py
+2026-02-20 18:36:28,463, INFO, Новое подключение с адресом : ('127.0.0.1', 56814), тип подключения main, <module>, 573, server.py
+2026-02-20 18:36:28,476, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:36:28,477, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:36:28,493, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:36:28,494, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:36:28,500, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:36:28,505, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:36:28,510, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:36:28,519, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:36:28,521, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:36:31,288, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:36:31,289, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:36:31,294, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:36:31,295, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:36:31,304, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:36:31,305, INFO, Новое подключение с адресом : ('127.0.0.1', 56818), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:36:31,307, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:36:31,309, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:36:31,556, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:36:31,559, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:36:31,566, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:36:31,568, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:36:31,573, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:36:33,254, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:36:33,270, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-4, say, 417, server.py
+2026-02-20 18:36:33,276, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:38:36,573, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:38:36,582, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 18:38:36,589, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:38:36,606, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:38:36,616, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:38:36,618, INFO, ** _delete **, sub_func, 75, server.py
+2026-02-20 18:40:27,721, INFO, Сервер запущен, <module>, 62, server.py
+2026-02-20 18:40:27,735, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,752, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,766, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,777, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,785, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,796, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,800, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,810, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,816, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,826, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,831, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,834, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,840, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,843, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:27,880, INFO, Говорит ринг на 2: Referee started!, say, 417, server.py
+2026-02-20 18:40:27,952, INFO, Говорит ринг на 2: Waiting for players, say, 417, server.py
+2026-02-20 18:40:27,951, INFO, Говорит ринг на 4: Referee started!, say, 417, server.py
+2026-02-20 18:40:27,894, INFO, Говорит ринг на 3: Referee started!, say, 417, server.py
+2026-02-20 18:40:27,993, INFO, Говорит ринг на 4: Waiting for players, say, 417, server.py
+2026-02-20 18:40:27,999, INFO, Говорит ринг на 3: Waiting for players, say, 417, server.py
+2026-02-20 18:40:45,742, INFO, Новое подключение с адресом : ('127.0.0.1', 53802), тип подключения main, <module>, 573, server.py
+2026-02-20 18:40:45,745, INFO, ** __init__ **, sub_func, 75, server.py
+2026-02-20 18:40:45,747, INFO, ** start **, sub_func, 75, server.py
+2026-02-20 18:40:45,759, INFO, ** _bootstrap **, sub_func, 75, server.py
+2026-02-20 18:40:45,760, INFO, ** _bootstrap_inner **, sub_func, 75, server.py
+2026-02-20 18:40:45,768, INFO, ** _set_ident **, sub_func, 75, server.py
+2026-02-20 18:40:45,781, INFO, ** _set_tstate_lock **, sub_func, 75, server.py
+2026-02-20 18:40:45,783, INFO, ** _set_native_id **, sub_func, 75, server.py
+2026-02-20 18:40:45,784, INFO, ** run **, sub_func, 75, server.py
+2026-02-20 18:40:45,786, INFO, Player 0: Игрок создан, say, 153, server.py
+2026-02-20 18:40:50,649, INFO, Player 0: 1, say, 153, server.py
+2026-02-20 18:40:50,650, INFO, ** set_character **, sub_func, 75, server.py
+2026-02-20 18:40:50,653, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:40:50,658, INFO, ** waiting_for_second_socket **, sub_func, 75, server.py
+2026-02-20 18:40:50,661, INFO, Player 0: start waiting for second socket, say, 153, server.py
+2026-02-20 18:40:50,674, INFO, Новое подключение с адресом : ('127.0.0.1', 53816), тип подключения 0, <module>, 573, server.py
+2026-02-20 18:40:50,675, INFO, ** add_extra_socket **, sub_func, 75, server.py
+2026-02-20 18:40:50,679, DEBUG, added extra socket, add_extra_socket, 150, server.py
+2026-02-20 18:40:50,917, INFO, Player 0: start state: (0, (False, 160, 385, 130, 130, '1'), ('2', '3', '4')), say, 153, server.py
+2026-02-20 18:40:50,919, INFO, ** set_start **, sub_func, 75, server.py
+2026-02-20 18:40:50,924, INFO, ** watch_rings **, sub_func, 75, server.py
+2026-02-20 18:40:50,929, INFO, Player 0: watch_rings запускается, say, 153, server.py
+2026-02-20 18:40:50,933, INFO, Player 0: Rings state: [False, False, False], say, 153, server.py
+2026-02-20 18:40:52,218, INFO, Player 0: выбрал ринг на 2, say, 153, server.py
+2026-02-20 18:40:52,222, INFO, Говорит ринг на 2: It is new player on our ring! His name is Thread-4, say, 417, server.py
+2026-02-20 18:40:52,224, INFO, Player 0: start main cycle., say, 153, server.py
+2026-02-20 18:40:53,308, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:40:54,209, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:40:55,038, INFO, ** attack **, sub_func, 75, server.py
+2026-02-20 18:41:04,582, ERROR, Expecting value: line 1 column 1 (char 0), recieve, 542, server.py
+2026-02-20 18:41:04,584, ERROR, Потерянно соеденение с : 0 игрок отключился, run, 309, server.py
+2026-02-20 18:41:04,589, INFO, ** remove_player **, sub_func, 75, server.py
+2026-02-20 18:41:04,593, INFO, Говорит ринг на 2: удален игрок 0 из players, say, 417, server.py
+2026-02-20 18:41:04,594, DEBUG, игрок закончился с id : 0, remove_player, 525, server.py
+2026-02-20 18:41:04,597, INFO, ** _delete **, sub_func, 75, server.py
