@@ -20,17 +20,17 @@ START_POSITIONS = (int(SCREEN_WIDTH / 5),
                    )
 
 SERVER = 'localhost'
-PORT = 5555
+PORT = 55555
 
 FIGHT_TIME = 600
 timer = FIGHT_TIME
 
-STAY = 0
-GO = 1
-JUMP = 2
-ATTACK = 3
-HITTED = 4
-DEAD = 5
+ATTACK = 0
+DEAD = 1
+GO = 2
+HITTED = 3
+JUMP = 4
+STAY = 5
 
 CONNECTED = 3 #в меню
 WAITING = 2   #ждет от остальных игроков
@@ -103,22 +103,22 @@ class Animation():
 
 @log_class
 class Character():
-    def __init__(self, id: str, name: str,):
+    def __init__(self, id: str, name: str, size: tuple):
         self.id = id
         self.name = name 
         self.max_health = 100
         self.speed = 10
         self.damage = 5
-        self.size = PLAYER_SIZE
-        self.weapon_size = PLAYER_SIZE
+        self.size = size
+        self.weapon_size = size
         self.ATTACK_DELAY = 5
         self.HITTED_DELAY = 5
-        self.animation_stay = Animation()
-        self.animation_go = Animation()
-        self.animation_jump = Animation()
-        self.animation_attack = Animation()
-        self.animation_hitted = Animation()
-        self.animation_dead = Animation()
+        self.animation_stay = Animation(3)
+        self.animation_go = Animation(1)
+        self.animation_jump = Animation(5)
+        self.animation_attack = Animation(5)
+        self.animation_hitted = Animation(5)
+        self.animation_dead = Animation(5)
         self.attack_duration = self.animation_attack.delay * self.animation_attack.skins_num 
         
 
@@ -128,7 +128,7 @@ class Player(threading.Thread):
         super().__init__(daemon=True)
         self.attack_delay = 0
         self.hitted_delay = 0
-        self.action = STAY     # 0 = stay, 1 = go, 2 = jump, 3 = attack, 4 hitted, 5 = dead
+        self.action = STAY     
         self.id = id
         self.dir = bool(self.id % 2) or False            # True влево, False вправо
         self.health = 100
@@ -269,7 +269,23 @@ class Player(threading.Thread):
     def run(self):
         self.say('Игрок создан')
         player_connected = True
-        send(tuple(characters.keys()), self.socket)
+        characters_to_send = {}
+
+        for id, char in characters.items():
+            characters_to_send[id] = {
+                    'name' : char.name,
+                    'size' : char.size,
+                    'anims_delay' : {
+                        'attack' : char.animation_attack.delay,
+                        'dead' : char.animation_dead.delay,
+                        'go' : char.animation_go.delay,
+                        'hitted' : char.animation_hitted.delay,
+                        'jump' : char.animation_jump.delay,
+                        'stay' : char.animation_stay.delay,
+                        },
+                    }
+
+        send(characters_to_send, self.socket)
         character_choice = recieve(self.socket)
         self.say(character_choice)
         self.set_character(characters[character_choice])
@@ -327,6 +343,7 @@ class Player(threading.Thread):
                     ring.remove_player(self.id, clean_winners=False)
                     break
         remove_player(self.id)
+
 
 class Rect:
     def __init__(self, size, center_x, center_y, ):
@@ -545,8 +562,8 @@ def recieve(client_socket,):
         return data
 
 
-grer = Character('1', 'grer')
-artom = Character('2', 'artom')
+grer = Character('1', 'grer', (32, 32))
+artom = Character('2', 'artom', (64, 64))
 
 ring2 = Ring(2)
 ring3 = Ring(3)

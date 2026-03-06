@@ -1,4 +1,3 @@
-from sys import implementation
 import easy_pygame as epg
 from easy_pygame import UP, DOWN, LEFT, RIGHT
 import pygame as pg
@@ -37,6 +36,7 @@ PROJECT_DIR = os.getcwd()
      #                   os.path.join(PROJECT_DIR, 'photos/grer/dead.png'),
       #                  )
 
+
 #ARTOM_IMAGE_PATHES = (os.path.join(PROJECT_DIR, 'photos/artom/stay_artom.png'),
  #                       os.path.join(PROJECT_DIR, 'photos/artom/go_artom.png'),
   #                      os.path.join(PROJECT_DIR, 'photos/artom/jump_artom.png'),
@@ -50,16 +50,18 @@ BUTTON_PRESSED_IMAGE_PATH = os.path.join('photos', 'button', 'pressed.jpeg')
 BUTTON_DISABLED_IMAGE_PATH = os.path.join('photos', 'button', 'disabled.jpeg')
 
 SERVER = 'localhost'
-PORT = 5555
+PORT = 55555
 
 characters = {
     '1' : {
         'name' : 'grer',
-        'size' : (100, 100)
+        'size' : (32, 32),
+        'anims_delay' : {'attack' : 5, 'dead' : 5, 'go' : 1, 'hitted' : 5,'jump' : 5 , 'stay' : 3}
         },
     '2' : {
         'name' : 'artom',
-        'size' : (150, 150)
+        'size' : (64, 64),
+        'anims_delay' : {'attack' : 5, 'dead' : 5, 'go' : 3,'hitted' : 5 ,'jump' : 5 , 'stay' : 3}
         },
 }
 
@@ -246,9 +248,10 @@ def connect():
         update()
 
 def sync_characters():
-    char_ids = server.recv()
-    character_names = [characters[id].get('name') for id in char_ids]
-    character_menu.add_buttons(character_names, char_ids)
+    characters = server.recv()
+    character_names = [character.get('name') for character in characters.values()]
+    character_menu.add_buttons(character_names, characters.keys())
+    return characters
 
 def initialize(char_id):
     global current_fighter_id, rings, current_fighter_config
@@ -422,7 +425,7 @@ character_menu = Menu(
 )
 
 connect()
-sync_characters()
+characters = sync_characters()
 character_id = character_menu.get_choice(update_buttons_enabled=False)
 print("CHAR_ID : ", character_id)
 initialize(character_id)     #TODO перезапуск инициализации при потере подключения
@@ -448,4 +451,4 @@ while character_id != 'exit' or choice == 'выйти': # server.connected: TODO
         time.sleep(5)
         label_game_over.hide()
 #TODO закрыть сокеты перед завершением программы
-exit()  
+exit()
