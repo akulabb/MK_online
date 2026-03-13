@@ -1,3 +1,4 @@
+0
 #WING
 
 import logging as mainlog
@@ -159,17 +160,18 @@ class Player(threading.Thread):
         log.info(f'Player {self.id}: {message}')
     
     def set_start(self,):
-        self.rect.update(START_POSITIONS[self.id], self.y_pos)
+        y_pos = int(GROUND_LEVEL - self.character.size[1] / 2)
+        self.rect.update(START_POSITIONS[self.id], y_pos)
         self.health = self.character.max_health
         self.action = STAY
         self.mode = READY
     
     def set_character(self, character: Character):
         self.character = character
-        self.y_pos = int(GROUND_LEVEL - character.size[1] / 2)
+        y_pos = int(GROUND_LEVEL - character.size[1] / 2)
         self.rect = Rect(character.size, 
                          START_POSITIONS[self.id], 
-                         self.y_pos
+                         y_pos
                         )
 
     def set_ring(self, ring):
@@ -183,10 +185,10 @@ class Player(threading.Thread):
             hit_x = self.rect.center_x - attack_dist / 2
         else:
             hit_x = self.rect.center_x + attack_dist / 2
-        
+
         hit = Rect(self.character.weapon_size,
                    hit_x,
-                   self.y_pos,
+                   self.rect.center_y,
                    )
         
    #     print('starting apply hitted')
