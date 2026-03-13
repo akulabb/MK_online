@@ -8,6 +8,8 @@ import json
 import inspect
 from dataclasses import dataclass
 
+from easy_pygame import WIDTH
+
 ERROR = -1
 
 SCREEN_HEIGHT = 600
@@ -52,9 +54,11 @@ log.addHandler(fhandler)
 ATTACK_DELAY = 5
 HITTED_DELAY = 5
 
-PLAYER_SIZE = (130, 130)
+#PLAYER_SIZE = (130, 130)
 
 GRAVITY = 2
+
+ATTACK_DISTANCE = 0    #TODO make a players attribute
 
 start_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 start_socket.bind((SERVER, PORT))
@@ -109,8 +113,9 @@ class Character():
         self.max_health = 100
         self.speed = 10
         self.damage = 5
-        self.size = size
-        self.weapon_size = size
+        self.width, self.height = size[0], size[1]
+        self.size = (self.width, self.height)
+        self.weapon_size = (self.width//2, self.height) 
         self.ATTACK_DELAY = 5
         self.HITTED_DELAY = 5
         self.animation_stay = Animation(3)
@@ -144,6 +149,7 @@ class Player(threading.Thread):
         self.rect = None
         self.y_pos = None
         self.attack_duration = 0
+        self.ring = None
    
     def add_extra_socket(self, extra_socket):
         self.extra_socket=extra_socket
@@ -165,6 +171,9 @@ class Player(threading.Thread):
                          START_POSITIONS[self.id], 
                          self.y_pos
                         )
+
+    def set_ring(self, ring):
+        self.ring = ring
     
     def attack(self,):
         self.attack_duration = self.character.attack_duration
@@ -181,7 +190,7 @@ class Player(threading.Thread):
                    )
         
    #     print('starting apply hitted')
-        for hitted_enemy in hit.get_hitted(self.id): 
+        for hitted_enemy in hit.get_hitted(self.id, self.ring.players): 
             hitted_enemy.hitted(self.character.damage)
          #   print('attack:enemy id', hitted_enemy.id)
     
@@ -318,6 +327,7 @@ class Player(threading.Thread):
             ring.add_player(self)
             self.say(f'start main cycle.')
             self.mode = IN_GAME
+            self.set_ring(ring)
             while True:                                                    #главный цикл игры
                 options = recieve(self.socket)
                 #self.mode = IN_GAME
@@ -360,9 +370,10 @@ class Rect:
         self.center_x = center_x
         self.center_y = center_y    
     
-    def get_hitted(self, my_player_id):
+    def get_hitted(self, my_player_id, players):
         enemies = []
-        for id, player in players.items():
+        for player in players:
+            id = player.id
             if player and not id == my_player_id:
                 if (player.rect.right >= self.left and
                         player.rect.left <= self.right and
@@ -562,7 +573,7 @@ def recieve(client_socket,):
         return data
 
 
-grer = Character('1', 'grer', (32, 32))
+grer = Character('1', 'grer', (64, 64))
 artom = Character('2', 'artom', (64, 64))
 
 ring2 = Ring(2)
