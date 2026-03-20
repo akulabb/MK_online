@@ -15,7 +15,7 @@ ERROR = -1
 
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 800
-GROUND_LEVEL = SCREEN_HEIGHT - 150              #716
+GROUND_LEVEL = SCREEN_HEIGHT - 160              #716
 START_POSITIONS = (int(SCREEN_WIDTH / 5), 
                    int(SCREEN_WIDTH - SCREEN_WIDTH / 5),
                    int(SCREEN_WIDTH / 5 * 2),
@@ -319,8 +319,15 @@ class Player(threading.Thread):
             self.set_start()
             threading.Thread(target=self.watch_rings, daemon=True).start()
             try:
-                ring_number = recieve(self.socket)   #ring_number ЭТО СТРОКА
-                ring = rings[ring_number]
+                ring_number = None
+                while not ring_number:
+                    menu_message = recieve(self.socket)
+                    menu_type, id = menu_message.split('~')
+                    if menu_type == 'ring':
+                        ring_number = id   #ring_number ЭТО СТРОКА
+                        ring = rings[ring_number]
+                    elif menu_type == 'character':
+                        self.set_character(characters.get(id))
             except Exception:
                 self.say(f'Неправильный номер ринга: {ring_number}, клиент будет отключен')
                 player_connected = False

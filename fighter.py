@@ -124,7 +124,7 @@ class Fighter(epg.Sprite):
         self.id = id
         health_bar_width = epg.WIDTH / 4 - 20
         health_bar_x = int(HEALTHBAR_POSITIONS[id] - health_bar_width / 2)
-        self.health_bar = HealthBar(id=self.id, health=100, pos=(health_bar_x, 10), width=health_bar_width, show=show)
+        self.health_bar = HealthBar(id=self.id, name=character.get('name'), health=100, pos=(health_bar_x, 10), width=health_bar_width, show=show)
         self.action_index = STAY
         self.animation_list = []
         self.change_character(character)
@@ -210,6 +210,7 @@ class Fighter(epg.Sprite):
             action_path = os.path.join(char_path, anim_name)
             animation = Animation(action_path, character.get('size'), skin_delay=anim_delay, direction=RIGHT)
             self.animation_list.append(animation)
+        self.health_bar.name = character.get('name')
         #for path in new_animation_list:
         #    self.animation_list.append(self.load_img(img=path, colorkey=(43, 205, 27)))
         #self.set_skin(STAY)
@@ -231,17 +232,24 @@ class Fighter(epg.Sprite):
 @log_class
 class HealthBar(epg.Label):
     HEIGHT = 40
-    def __init__(self, id, pos, width, health=100, show=True):
+    def __init__(self, id, name, pos, width, health=100, show=True):
         self.width = width
+        self.name = name
+        self.ffont = pygame.freetype.Font("/usr/share/fonts/TTF/DejaVuSerif.ttf", self.HEIGHT-5)
         x, y = pos
         super().__init__(text=id, x=x, y=y, val=health, show=show)
-        
-    
+
     def _get_surf(self, ):
         raito = self.width/100
         surface = pygame.Surface((self.width+4, self.HEIGHT+4))
         pygame.draw.rect(surface, epg.BLACK, (0, 0, self.width, self.HEIGHT))
         pygame.draw.rect(surface, epg.RED, (2, 2, self.width, self.HEIGHT))
         pygame.draw.rect(surface, epg.YELLOW, (2, 2, self.value * raito, self.HEIGHT))
+
+        rect = self.ffont.get_rect(self.name)
+        ypos = int(self.HEIGHT/2 - rect.height/2)
+        xpos = int(self.width/2 - rect.width/2)
+        self.ffont.render_to(surface, (xpos, ypos), self.name)
+
         return surface
     

@@ -439,11 +439,11 @@ while character_id != 'exit' or choice == 'выйти': # server.connected: TODO
     if choice == 'characters':
         character_id = character_menu.get_choice(update_buttons_enabled=False)
         current_fighter.change_character(characters[character_id])
-
+        server.send(f"character~{character_id}")
 
     else:
         ring_num = choice[-1]
-        server.send(ring_num)
+        server.send(f'ring~{ring_num}')
         winners = fight()
         fighters = [current_fighter]
         label_game_over.show()
