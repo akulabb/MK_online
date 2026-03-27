@@ -1,6 +1,6 @@
-0
-#WING
+import os.path
 
+#from pygame.examples.video import backgrounds
 import logging as mainlog
 import socket
 import threading
@@ -8,7 +8,7 @@ import time
 import json
 import inspect
 from dataclasses import dataclass
-
+print(1)
 from easy_pygame import WIDTH
 
 ERROR = -1
@@ -24,7 +24,7 @@ START_POSITIONS = (int(SCREEN_WIDTH / 5),
 
 SERVER = 'localhost'
 PORT = 55555
-
+print(1)
 FIGHT_TIME = 600
 timer = FIGHT_TIME
 
@@ -69,6 +69,15 @@ log.info('Сервер запущен')
 players = {num:None for num in range(20)}
 
 game_started = False
+
+media = {
+    'ring_backgrounds' : {
+        'background_1' : os.path.join('photos', 'rings', 'ring_1.png'),
+        'background_2' : os.path.join('photos', 'rings', 'ring_2.png'),
+        'background_3' : os.path.join('photos', 'rings', 'ring_3.png'),
+        'background_4' : os.path.join('photos', 'rings', 'ring_4.png')
+    },
+}
 
 #max_players_num = 0
 #connected_players_num = 0
@@ -334,6 +343,7 @@ class Player(threading.Thread):
                 continue
             self.say(f'выбрал ринг на {ring_number}')
             ring.add_player(self)
+            send(ring.background, self.socket)
             self.say(f'start main cycle.')
             self.mode = IN_GAME
             self.set_ring(ring)
@@ -393,11 +403,12 @@ class Rect:
         return enemies
 
 class Ring(threading.Thread):
-    def __init__(self, players_num, playing_time=30):
+    def __init__(self, players_num, background, playing_time=30):
         super().__init__(daemon=True)
         self.playing_time = playing_time
         self.timer = self.playing_time
         self.players_num = players_num
+        self.background = background
         self.max_players_num = 0
         self.alive_players_num = 0
         self.ring_enable = False
@@ -585,9 +596,9 @@ def recieve(client_socket,):
 grer = Character('1', 'grer', (64, 64))
 artom = Character('2', 'artom', (64, 64))
 
-ring2 = Ring(2)
-ring3 = Ring(3)
-ring4 = Ring(4)
+ring2 = Ring(2, background=tuple(media['ring_backgrounds'].keys())[0])
+ring3 = Ring(3, background=tuple(media['ring_backgrounds'].keys())[1])
+ring4 = Ring(4, background=tuple(media['ring_backgrounds'].keys())[2])
 
 ring2.start()
 ring3.start()

@@ -16,7 +16,7 @@ SPRITE_WIDTH = 130
 SPRITE_HEIGHT = 130
 
 FPS = 30
-EARTH_IMAGE_PATH = os.path.join('photos', 'earth', 'earth.png')
+#EARTH_IMAGE_PATH = os.path.join('photos', 'rings', 'ring_1.png')
 BACK_IMAGE_PATH = os.path.join('photos', 'background', 'back_1.png')
 WAITING_BACK_IMAGE_PATH = os.path.join('photos', 'background', 'back_2.png')
 
@@ -51,6 +51,16 @@ BUTTON_DISABLED_IMAGE_PATH = os.path.join('photos', 'button', 'disabled.jpeg')
 
 SERVER = 'localhost'
 PORT = 55555
+
+media = {
+    'ring_backgrounds' : {
+        'background_1' : os.path.join('photos', 'rings', 'ring_1.png'),
+        'background_2' : os.path.join('photos', 'rings', 'ring_2.png'),
+        'background_3' : os.path.join('photos', 'rings', 'ring_3.png'),
+        'background_4' : os.path.join('photos', 'rings', 'ring_4.png')
+    },
+}
+
 
 characters = {
     '1' : {
@@ -305,7 +315,6 @@ def create_fighters(game_state, show=True, current=False):
  
 @to_log
 def fight():
-    screen.set_background(EARTH_IMAGE_PATH)
     label_timer.show()
     current_fighter.show()
     print('файтеры', len(fighters))
@@ -444,6 +453,8 @@ while character_id != 'exit' or choice == 'выйти': # server.connected: TODO
     else:
         ring_num = choice[-1]
         server.send(f'ring~{ring_num}')
+        background_name = server.recv()
+        screen.set_background(media['ring_backgrounds'].get(background_name))
         winners = fight()
         fighters = [current_fighter]
         label_game_over.show()
