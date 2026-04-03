@@ -50,14 +50,14 @@ BUTTON_PRESSED_IMAGE_PATH = os.path.join('photos', 'button', 'pressed.jpeg')
 BUTTON_DISABLED_IMAGE_PATH = os.path.join('photos', 'button', 'disabled.jpeg')
 
 SERVER = 'localhost'
-PORT = 55555
+PORT = 5555
 
 media = {
     'ring_backgrounds' : {
         'background_1' : os.path.join('photos', 'rings', 'ring_1.png'),
         'background_2' : os.path.join('photos', 'rings', 'ring_2.png'),
-        'background_3' : os.path.join('photos', 'rings', 'ring_3.png'),
-        'background_4' : os.path.join('photos', 'rings', 'ring_4.png')
+        #'background_3' : os.path.join('photos', 'rings', 'ring_3.png'),
+        #'background_4' : os.path.join('photos', 'rings', 'ring_4.png')
     },
 }
 
@@ -263,6 +263,18 @@ def sync_characters():
     character_menu.add_buttons(character_names, characters.keys())
     return characters
 
+def check_media(server_media: dict):
+    missing_media = {}
+    for mediatype, data in server_media.items():
+        missing_media[mediatype] = {}
+        for image_id in data.keys():
+            server_filename = os.path.basename(data[image_id])
+            local_filename = os.path.basename(media.get(mediatype).get(image_id) or '')
+            if local_filename != server_filename:
+                missing_media[mediatype][image_id] = data[image_id]
+    print(f"TO DOWNLOAD: {missing_media}")
+
+
 def initialize(char_id):
     global current_fighter_id, rings, current_fighter_config
     if char_id == 'exit':
@@ -270,7 +282,8 @@ def initialize(char_id):
     server.send(char_id)
     start_game_state = server.get_start()
     print(f'start game state:{start_game_state}')
-    current_fighter_id, current_fighter_config, rings = start_game_state
+    current_fighter_id, current_fighter_config, rings, media = start_game_state
+    check_media(media)
    # server.add_extra_socket(current_fighter_id)
     server.connect_extra_socket(current_fighter_id)
     button_names = [f'Ринг на {ring}' for ring in rings]
@@ -457,9 +470,10 @@ while character_id != 'exit' or choice == 'выйти': # server.connected: TODO
         screen.set_background(media['ring_backgrounds'].get(background_name))
         winners = fight()
         fighters = [current_fighter]
+        label_timer.hide()
         label_game_over.show()
         update()
         time.sleep(5)
         label_game_over.hide()
-#TODO закрыть сокеты перед завершением программы
+server.kill()
 exit()

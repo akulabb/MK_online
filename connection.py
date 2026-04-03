@@ -1,5 +1,7 @@
 import socket
 import json
+from difflib import context_diff
+from os import WCONTINUED
 
 
 class Connection:
@@ -49,5 +51,12 @@ class Connection:
 #            response = self.main_socket.recv(1024)
         except Exception as err:
             print('connection error : ', err)
-    
+
+    def kill(self):
+        try:
+            self.main_socket.close()
+            self.extra_socket.close()
+        except Exception as err:
+            print(err)
+
     

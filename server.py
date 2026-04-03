@@ -23,7 +23,7 @@ START_POSITIONS = (int(SCREEN_WIDTH / 5),
                    )
 
 SERVER = 'localhost'
-PORT = 55555
+PORT = 5555
 print(1)
 FIGHT_TIME = 600
 timer = FIGHT_TIME
@@ -52,8 +52,8 @@ formatter = mainlog.Formatter('%(asctime)s, %(levelname)s, %(message)s, %(funcNa
 fhandler.setFormatter(formatter)
 log.addHandler(fhandler)
 
-ATTACK_DELAY = 5
-HITTED_DELAY = 5
+ATTACK_DELAY = 1
+HITTED_DELAY = 1
 
 #PLAYER_SIZE = (130, 130)
 
@@ -320,6 +320,7 @@ class Player(threading.Thread):
         start_state = (self.id,
                        start_config,
                        tuple(rings.keys()),         #Это названия доступных на сервере рингов
+                       media,
                        )                 
         send(start_state, self.socket)
         self.waiting_for_second_socket()
