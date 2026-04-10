@@ -56,7 +56,7 @@ media = {
     'ring_backgrounds' : {
         'background_1' : os.path.join('photos', 'rings', 'ring_1.png'),
         'background_2' : os.path.join('photos', 'rings', 'ring_2.png'),
-        #'background_3' : os.path.join('photos', 'rings', 'ring_3.png'),
+        'background_3' : os.path.join('photos', 'rings', 'ring_3.png'),
         #'background_4' : os.path.join('photos', 'rings', 'ring_4.png')
     },
 }
@@ -263,8 +263,9 @@ def sync_characters():
     character_menu.add_buttons(character_names, characters.keys())
     return characters
 
-def check_media(server_media: dict):
+def check_missing_media(server_media: dict):
     missing_media = {}
+    media_is_missing = False
     for mediatype, data in server_media.items():
         missing_media[mediatype] = {}
         for image_id in data.keys():
@@ -272,7 +273,9 @@ def check_media(server_media: dict):
             local_filename = os.path.basename(media.get(mediatype).get(image_id) or '')
             if local_filename != server_filename:
                 missing_media[mediatype][image_id] = data[image_id]
-    print(f"TO DOWNLOAD: {missing_media}")
+                media_is_missing = True
+    if media_is_missing:
+        return missing_media
 
 
 def initialize(char_id):
@@ -283,7 +286,14 @@ def initialize(char_id):
     start_game_state = server.get_start()
     print(f'start game state:{start_game_state}')
     current_fighter_id, current_fighter_config, rings, media = start_game_state
-    check_media(media)
+    missing_media = check_missing_media(media)
+    if missing_media:
+        server.send(missing_media)
+        with open(os.path.join('photos', 'rings', 'ring_test.png'), mode='wb') as img_file:
+            image_bytes = server.recv_img()
+            img_file.write(image_bytes)
+    else:
+        server.send("No media missing")
    # server.add_extra_socket(current_fighter_id)
     server.connect_extra_socket(current_fighter_id)
     button_names = [f'Ринг на {ring}' for ring in rings]

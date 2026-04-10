@@ -9,7 +9,8 @@ class Connection:
         self.adress = (server, port)
         self.main_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.extra_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    
+        self.image_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
     def connect_main_socket(self):
         self.main_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.main_socket.connect(self.adress)
@@ -41,7 +42,14 @@ class Connection:
             print('connection error : ', err)
         return data
 
-    
+    def recv_img(self,):
+        img_part_bytes = self.image_socket.recv(1024)
+        img_full_bytes = b''
+        while img_part_bytes:
+            img_full_bytes += img_part_bytes
+            img_part_bytes = self.image_socket.recv(1024)
+        return img_full_bytes
+
     def send(self, data, socket=None):
         socket = socket or self.main_socket
         try:

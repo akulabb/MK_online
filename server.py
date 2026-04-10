@@ -8,6 +8,8 @@ import time
 import json
 import inspect
 from dataclasses import dataclass
+from fileinput import close
+
 print(1)
 from easy_pygame import WIDTH
 
@@ -323,6 +325,10 @@ class Player(threading.Thread):
                        media,
                        )                 
         send(start_state, self.socket)
+        missing_media = recieve(self.socket)
+        if type(missing_media) == dict:
+            self.send_image(os.path.join('photos', 'rings', 'ring_1.png'))
+        print(missing_media)
         self.waiting_for_second_socket()
         self.say(f'start state: {start_state}')
         while player_connected:
@@ -373,6 +379,19 @@ class Player(threading.Thread):
                     ring.remove_player(self.id, clean_winners=False)
                     break
         remove_player(self.id)
+
+    def send_image(self, image_path: str):
+        image_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        image_socket.bind((SERVER, PORT+1))
+        image_socket.listen(2)
+        with open(image_path, mode='rb') as file:
+            image_bytes = file.read(1024)
+            while image_bytes:
+                image_socket.send(image_bytes)
+                image_bytes = file.read(1024)
+        image_socket.close()
+
+
 
 
 class Rect:
