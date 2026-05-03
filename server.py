@@ -25,7 +25,7 @@ START_POSITIONS = (int(SCREEN_WIDTH / 5),
                    )
 
 SERVER = 'localhost'
-PORT = 5555
+PORT = 55555
 print(1)
 FIGHT_TIME = 600
 timer = FIGHT_TIME
@@ -381,15 +381,16 @@ class Player(threading.Thread):
         remove_player(self.id)
 
     def send_image(self, image_path: str):
-        image_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        image_socket.bind((SERVER, PORT+1))
-        image_socket.listen(2)
         with open(image_path, mode='rb') as file:
-            image_bytes = file.read(1024)
+            full_image_bytes = file.read()
+            image_bytes = full_image_bytes[:1024]
+            full_image_bytes = full_image_bytes[1024:]
             while image_bytes:
-                image_socket.send(image_bytes)
-                image_bytes = file.read(1024)
-        image_socket.close()
+                self.extra_socket.send(image_bytes)
+                image_bytes = full_image_bytes[:1024]
+                full_image_bytes = full_image_bytes[1024:]
+        print('closing extra socket, finished image transmission')
+        self.extra_socket.close()
 
 
 

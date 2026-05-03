@@ -8,8 +8,6 @@ class Connection:
     def __init__(self, server, port):
         self.adress = (server, port)
         self.main_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.extra_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.image_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def connect_main_socket(self):
         self.main_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -18,6 +16,7 @@ class Connection:
         self.send('main')
     
     def connect_extra_socket(self, id):
+        self.extra_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.extra_socket.connect(self.adress)
         self.send(id, self.extra_socket)
     
@@ -39,15 +38,19 @@ class Connection:
             str_data = response.decode()
             data = json.loads(str_data) 
         except Exception as err:
+            #pass
             print('connection error : ', err)
         return data
 
     def recv_img(self,):
-        img_part_bytes = self.image_socket.recv(1024)
+        img_part_bytes = self.extra_socket.recv(1024)
         img_full_bytes = b''
         while img_part_bytes:
+            #print(f'RECIEVED BYTES: {img_full_bytes}')
             img_full_bytes += img_part_bytes
-            img_part_bytes = self.image_socket.recv(1024)
+            img_part_bytes = self.extra_socket.recv(1024)
+        print(f'real image size: {len(img_full_bytes)}')
+        self.extra_socket.close()
         return img_full_bytes
 
     def send(self, data, socket=None):
@@ -58,6 +61,7 @@ class Connection:
             socket.send(byte_options)
 #            response = self.main_socket.recv(1024)
         except Exception as err:
+            #pass
             print('connection error : ', err)
 
     def kill(self):

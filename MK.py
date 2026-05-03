@@ -50,7 +50,7 @@ BUTTON_PRESSED_IMAGE_PATH = os.path.join('photos', 'button', 'pressed.jpeg')
 BUTTON_DISABLED_IMAGE_PATH = os.path.join('photos', 'button', 'disabled.jpeg')
 
 SERVER = 'localhost'
-PORT = 5555
+PORT = 55555
 
 media = {
     'ring_backgrounds' : {
@@ -286,6 +286,7 @@ def initialize(char_id):
     start_game_state = server.get_start()
     print(f'start game state:{start_game_state}')
     current_fighter_id, current_fighter_config, rings, media = start_game_state
+    server.connect_extra_socket(current_fighter_id)
     missing_media = check_missing_media(media)
     if missing_media:
         server.send(missing_media)
