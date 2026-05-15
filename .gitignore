@@ -2,3 +2,10 @@
 /client/log.txt
 /client/log_client.txt
 /.venv/
+/client/recursy.py
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/MK.iml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/vcs.xml

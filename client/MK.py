@@ -52,13 +52,13 @@ BUTTON_DISABLED_IMAGE_PATH = os.path.join('photos', 'button', 'disabled.jpeg')
 SERVER = 'localhost'
 PORT = 55555
 
-media = {
-    'ring_backgrounds' : {
-        'background_1' : os.path.join('photos', 'rings', 'ring_1.png'),
-        'background_2' : os.path.join('photos', 'rings', 'ring_2.png'),
-        #'background_3' : os.path.join('photos', 'rings', 'ring_3.png'),
-        #'background_4' : os.path.join('photos', 'rings', 'ring_4.png')
-    },
+local_media = {
+#    'ring_backgrounds' : {
+#        'background_1' : os.path.join('photos', 'rings', 'ring_1.png'),
+#        'background_2' : os.path.join('photos', 'rings', 'ring_2.png'),
+#        'background_3' : os.path.join('photos', 'rings', 'ring_3.png'),
+#        'background_4' : os.path.join('photos', 'rings', 'ring_4.png')
+#    },
 }
 
 
@@ -263,7 +263,24 @@ def sync_characters():
     character_menu.add_buttons(character_names, characters.keys())
     return characters
 
-def check_missing_media(server_media: dict):
+def check_missing_media(media: dict):
+
+    for key, potential_path in media.items():
+        if type(potential_path) == dict:
+            check_missing_media(potential_path)
+        else:
+            if not os.path.exists(potential_path):
+                #checking if directory exists
+                directory, filename = os.path.split(potential_path)
+                if not os.path.exists(directory):
+                    os.makedirs(directory)
+
+                #recieving and writing bytes
+                image_bytes = server.recv_img(potential_path)
+                with open(potential_path, mode='wb') as img_file:
+                    img_file.write(image_bytes)
+
+    '''
     for mediatype, data in server_media.items():
         for image_id in data.keys():
             server_file_path = data[image_id]
@@ -273,20 +290,24 @@ def check_missing_media(server_media: dict):
                 with open(server_file_path, mode='wb') as img_file:
                     image_bytes = server.recv_img(server_file_path)
                     img_file.write(image_bytes)
-
-    server.recv_img('')
+'''
 
 
 def initialize(char_id):
-    global current_fighter_id, rings, current_fighter_config
+    global current_fighter_id, rings, current_fighter_config, local_media
     if char_id == 'exit':
         return
     server.send(char_id)
     start_game_state = server.get_start()
     print(f'start game state:{start_game_state}')
-    current_fighter_id, current_fighter_config, rings, media = start_game_state
+    current_fighter_id, current_fighter_config, rings, server_media = start_game_state
     server.connect_extra_socket(current_fighter_id)
-    check_missing_media(media)
+
+    check_missing_media(server_media)
+    local_media = server_media
+    #sending message to close socket
+    server.recv_img('')
+
     #server.add_extra_socket(current_fighter_id)
     button_names = [f'Ринг на {ring}' for ring in rings]
     button_names.reverse()
@@ -472,7 +493,7 @@ while character_id != 'exit' or choice == 'выйти': # server.connected: TODO
         ring_num = choice[-1]
         server.send(f'ring~{ring_num}')
         background_name = server.recv()
-        screen.set_background(media['ring_backgrounds'].get(background_name))
+        screen.set_background(local_media['ring_backgrounds'].get(background_name))
         winners = fight()
         fighters = [current_fighter]
         label_timer.hide()
