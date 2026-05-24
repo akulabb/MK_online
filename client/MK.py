@@ -280,18 +280,6 @@ def check_missing_media(media: dict):
                 with open(potential_path, mode='wb') as img_file:
                     img_file.write(image_bytes)
 
-    '''
-    for mediatype, data in server_media.items():
-        for image_id in data.keys():
-            server_file_path = data[image_id]
-            local_file_path = media.get(mediatype).get(image_id) or ''
-
-            if local_file_path != server_file_path:
-                with open(server_file_path, mode='wb') as img_file:
-                    image_bytes = server.recv_img(server_file_path)
-                    img_file.write(image_bytes)
-'''
-
 
 def initialize(char_id):
     global current_fighter_id, rings, current_fighter_config, local_media

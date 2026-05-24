@@ -9,3 +9,6 @@
 /.idea/modules.xml
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/vcs.xml
+/test/
+media.json
+.gitignore

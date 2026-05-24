@@ -9,6 +9,7 @@ import json
 import inspect
 from dataclasses import dataclass
 from fileinput import close
+from pprint import pprint
 
 print(1)
 from easy_pygame import WIDTH
@@ -71,15 +72,6 @@ log.info('Сервер запущен')
 players = {num:None for num in range(20)}
 
 game_started = False
-
-media = {
-    'ring_backgrounds' : {
-        'background_1' : os.path.join('photos', 'rings', 'ring_1.png'),
-        'background_2' : os.path.join('photos', 'rings', 'ring_2.png'),
-        'background_3' : os.path.join('photos', 'rings', 'ring_3.png'),
-        'background_4' : os.path.join('photos', 'rings', 'ring_4.png')
-    },
-}
 
 #max_players_num = 0
 #connected_players_num = 0
@@ -621,13 +613,38 @@ def recieve(client_socket,):
     finally:
         return data
 
+def seek_files_in_folder(folder: str, media_to_return={}):
+    media_to_return_copy = media_to_return.copy()
+    for potential_file in os.listdir(folder):
+        potential_file_path = folder + '/' + potential_file
+        if os.path.isdir(potential_file_path):
+            next_dir = potential_file_path
+            print(f'found dir {next_dir}')
+            file = seek_files_in_folder(next_dir, media_to_return)
+            media_to_return_copy[os.path.basename(next_dir)] = file
+        else:
+            print(f'found file {potential_file}')
+            media_to_return_copy[potential_file] = potential_file_path
+
+    pprint(f"media to return: {media_to_return}")
+    return media_to_return_copy
+
+
 
 grer = Character('1', 'grer', (64, 64))
 artom = Character('2', 'artom', (64, 64))
 
-ring2 = Ring(2, background=tuple(media['ring_backgrounds'].keys())[0])
-ring3 = Ring(3, background=tuple(media['ring_backgrounds'].keys())[1])
-ring4 = Ring(4, background=tuple(media['ring_backgrounds'].keys())[2])
+media = {}
+
+media["photos"] = seek_files_in_folder("photos")
+with open('media.json', 'w') as f:
+    json.dump(media, f, indent=4)
+
+print(media)
+
+ring2 = Ring(2, background=tuple(media['photos']['rings'].keys())[0])
+ring3 = Ring(3, background=tuple(media['photos']['rings'].keys())[1])
+ring4 = Ring(4, background=tuple(media['photos']['rings'].keys())[2])
 
 ring2.start()
 ring3.start()
@@ -643,6 +660,7 @@ characters = {
     '1' : grer,
     '2' : artom,
 }
+
 
 while True:
     new_socket, adress = start_socket.accept()
