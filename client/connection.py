@@ -35,10 +35,11 @@ class Connection:
             socket = self.main_socket
         data = {}
         try:
-            response = socket.recv(1024)
-       #     print('recv bytes', response)
+            response = socket.recv(2048)
+            #print('recv bytes', response)
             str_data = response.decode()
-            data = json.loads(str_data) 
+            data = json.loads(str_data)
+            #print(f'recv data: {data}')
         except Exception as err:
             #pass
             print('connection error : ', err)

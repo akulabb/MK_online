@@ -315,7 +315,8 @@ class Player(threading.Thread):
                        start_config,
                        tuple(rings.keys()),         #Это названия доступных на сервере рингов
                        media,
-                       )                 
+                       )
+        print(f'start state {start_state}')
         send(start_state, self.socket)
         self.send_images()
         self.waiting_for_second_socket()
@@ -636,15 +637,15 @@ artom = Character('2', 'artom', (64, 64))
 
 media = {}
 
-media["photos"] = seek_files_in_folder("photos")
+media = seek_files_in_folder("photos")
 with open('media.json', 'w') as f:
     json.dump(media, f, indent=4)
 
 print(media)
 
-ring2 = Ring(2, background=tuple(media['photos']['rings'].keys())[0])
-ring3 = Ring(3, background=tuple(media['photos']['rings'].keys())[1])
-ring4 = Ring(4, background=tuple(media['photos']['rings'].keys())[2])
+ring2 = Ring(2, background=tuple(media['rings'].keys())[0])
+ring3 = Ring(3, background=tuple(media['rings'].keys())[1])
+ring4 = Ring(4, background=tuple(media['rings'].keys())[2])
 
 ring2.start()
 ring3.start()

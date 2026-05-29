@@ -17,8 +17,8 @@ SPRITE_HEIGHT = 130
 
 FPS = 30
 #EARTH_IMAGE_PATH = os.path.join('photos', 'rings', 'ring_1.png')
-BACK_IMAGE_PATH = os.path.join('photos', 'background', 'back_1.png')
-WAITING_BACK_IMAGE_PATH = os.path.join('photos', 'background', 'back_2.png')
+BACK_IMAGE_PATH = os.path.join('photos', 'backgrounds', 'back_1.png')
+WAITING_BACK_IMAGE_PATH = os.path.join('photos', 'backgrounds', 'back_2.png')
 
 HEIGHT_HALF = int(SCREEN_HEIGHT/2)
 WIDTH_HALF = int(SCREEN_WIDTH/2)
@@ -481,7 +481,7 @@ while character_id != 'exit' or choice == 'выйти': # server.connected: TODO
         ring_num = choice[-1]
         server.send(f'ring~{ring_num}')
         background_name = server.recv()
-        screen.set_background(local_media['ring_backgrounds'].get(background_name))
+        screen.set_background(local_media['rings'].get(background_name))
         winners = fight()
         fighters = [current_fighter]
         label_timer.hide()

@@ -205,7 +205,7 @@ class Fighter(epg.Sprite):
     
     def change_character(self, character: dict):
         self.animation_list = []
-        char_path = os.path.join('photos', character.get('name'))
+        char_path = os.path.join('photos', 'characters', character.get('name'))
         for anim_name, anim_delay in character.get('anims_delay').items():
             action_path = os.path.join(char_path, anim_name)
             animation = Animation(action_path, character.get('size'), skin_delay=anim_delay, direction=RIGHT)
